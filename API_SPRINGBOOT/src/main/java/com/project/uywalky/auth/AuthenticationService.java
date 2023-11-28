@@ -2,16 +2,20 @@ package com.project.uywalky.auth;
 
 import com.project.uywalky.Entity.TipoUsuario;
 import com.project.uywalky.config.ProjectService;
+import com.project.uywalky.dto.NuevoUsuarioDTO;
 import com.project.uywalky.exception.TipoUsuarioNotFoundException;
 import com.project.uywalky.repository.TipoUsuarioRepository;
 import com.project.uywalky.user.User;
 import com.project.uywalky.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +26,9 @@ public class AuthenticationService {
     private final ProjectService projectService;
     private final AuthenticationManager authenticationManager;
     private final TipoUsuarioRepository tipoUsuarioRepository;
+
+    // Servicio para registrar al usuario
+    // RegisterRequest funciona como el DTO aquí
     public AuthenticationResponse register(RegisterRequest request, Integer idTipoUsuario) {
         TipoUsuario tipoUsuario = tipoUsuarioRepository.findById(idTipoUsuario)
                 .orElseThrow(() -> new TipoUsuarioNotFoundException("Tipo de usuario no encontrado"));
@@ -45,6 +52,8 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
+    // Servicio para autenticar al usuario
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         User user = repository.findByEmail(request.getEmail())
                         .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
@@ -66,4 +75,73 @@ public class AuthenticationService {
                 .IdTipoUsuario(tipoUsuarioId)
                 .build();
     }
+
+    // Servicio para mostrar los usuarios creados
+    public List<User> getAllUsers(){
+        return repository.findAll();
+    }
+
+    // Servicio para mostrar un usuario por su ID
+    public User getUserById(Integer id){
+        return repository.findById(id)
+                .orElseThrow(()-> new UsernameNotFoundException("Usuario no encontrado"));
+    }
+
+    // Servicio para editar Usuario
+    public String editUserDetails(Integer id, NuevoUsuarioDTO request) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado "));
+        // Actualizar los campos según la solicitud de edición
+        if (request.getNombres() != null) {
+            user.setNombres(request.getNombres());
+        }
+        if (request.getApellidos() != null) {
+            user.setApellidos(request.getApellidos());
+        }
+        if (request.getApodo() != null) {
+            user.setApodo(request.getApodo());
+        }
+        if (request.getDireccion() != null) {
+            user.setDireccion(request.getDireccion());
+        }
+        if (request.getEdad() != null) {
+            user.setEdad(request.getEdad());
+        }
+        if (request.getCelular() != null) {
+            user.setCelular(request.getCelular());
+        }
+        if (request.getDni() != null) {
+            user.setDni(request.getDni());
+        }
+        if (request.getEmail() != null) {
+            user.setEmail(request.getEmail());
+        }
+        // Si la contraseña se actualiza, codifícala y genera un nuevo token
+        if (request.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+            // Generando un nuevo token con la informacion actualizada del usuario
+            var jwtToken = projectService.generateToken(user);
+            // Guardando cambios en la base de datos
+            repository.save(user);
+            // Devolver nuevo token
+            return jwtToken;
+        }
+        // Guardando cambios en la base de datos
+        repository.save(user);
+
+        //Si no se actualiza el password devolver null o algun indicador
+        return null;
+    }
+
+    // Creación de servicio para eliminar usuarios por ID
+    public void deleteUserById(Integer id){
+        // Verificar si el usuario existe
+        User user = repository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        // Eliminando el usuario de la base de datos
+        repository.delete(user);
+    }
+
+    //Creación de servicio para buscar usuarios por numero de id
+
 }

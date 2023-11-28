@@ -2,7 +2,6 @@ package com.project.uywalky.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.uywalky.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,28 +16,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Tipos_Usuario")
-// Ignora la serialización de la propiedad 'users'
-public class TipoUsuario {
+@Table(name = "Estados_Transaccion")
+public class EstadoTransaccion {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_tipo_usuario")
-    private Integer idTipoUsuario;
+    @Column(name = "id_estado_transaccion")
+    private Integer id_estado_transaccion;
 
-    @Column(name = "nombre_tipo_usuario", nullable = false, length = 20, unique = true)
-    private String nombreTipoUsuario;
+    @Column(name = "nombre_estado")
+    private String nombre_estado;
 
-    @Column(name = "descripcion", nullable = false, length = 255)
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")
+    @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")//Despues agregar opcion para que no sea nulo
     private Integer estado;
 
     @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdAt;
 
-    @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "updated_at",  columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Timestamp updatedAt;
 
     @Column(name = "created_by")
@@ -48,20 +46,20 @@ public class TipoUsuario {
     private Integer updatedBy;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "tipoUsuario")
-    private List<User> users;
-
+    @OneToMany(mappedBy = "estadoTransaccion")
+    private List<Transacciones> transacciones;
     @Override
     public String toString() {
-        return "TipoUsuario{" +
-                "idTipoUsuario=" + idTipoUsuario +
-                ", nombreTipoUsuario='" + nombreTipoUsuario + '\'' +
+        return "EstadoTransaccion{" +
+                "id_estado_transaccion=" + id_estado_transaccion +
+                ", nombre_estado='" + nombre_estado + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", estado=" + estado +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", createdBy=" + createdBy +
                 ", updatedBy=" + updatedBy +
+                ", transacciones=" + transacciones +
                 '}';
     }
 }

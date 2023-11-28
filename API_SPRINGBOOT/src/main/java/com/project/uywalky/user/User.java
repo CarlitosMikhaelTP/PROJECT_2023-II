@@ -1,5 +1,6 @@
 package com.project.uywalky.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.uywalky.Entity.Paseadores;
 import com.project.uywalky.Entity.TipoUsuario;
 import jakarta.persistence.*;
@@ -27,12 +28,13 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id //Identificador único de esta clase de usuario
-    @GeneratedValue //Incrementará el id automáticamente
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Incrementará el id automáticamente
     @Column(name = "id")
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_usuario", nullable = false)
+    // @JsonIgnore anotación que permite escoger que campos no quieres que se envien como respuesta
     private TipoUsuario tipoUsuario;
 
     @Column(name = "nombres", nullable = false, length = 20)
@@ -77,6 +79,11 @@ public class User implements UserDetails {
     @Column(name = "updated_by")
     private Integer updatedBy;
 
+    @JsonIgnore // Sirve para evitar exponer detalles específicos
+    // Estableciendo relacion uno a uno con tabla user
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Paseadores paseadores;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();
@@ -116,7 +123,7 @@ public class User implements UserDetails {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", tipoUsuario=" + tipoUsuario +
+                ", tipoUsuarioId=" + (tipoUsuario != null ? tipoUsuario.getIdTipoUsuario() : null) +
                 ", nombres='" + nombres + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", apodo='" + apodo + '\'' +

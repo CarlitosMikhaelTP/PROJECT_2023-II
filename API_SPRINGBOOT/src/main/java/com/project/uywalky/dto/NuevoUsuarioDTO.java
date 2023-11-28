@@ -1,5 +1,6 @@
 package com.project.uywalky.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.project.uywalky.Entity.TipoUsuario;
 import com.project.uywalky.user.User;
 import jakarta.persistence.*;

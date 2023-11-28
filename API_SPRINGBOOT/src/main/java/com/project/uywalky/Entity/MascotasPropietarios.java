@@ -1,27 +1,33 @@
 package com.project.uywalky.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Tipos_Mascota")
-public class TipoMascota {
+@Table(name ="Mascotas_Propietarios")
+public class MascotasPropietarios {
 
     @Id
     @GeneratedValue
-    private Integer idTipoMascota;
+    @Column(name = "id_mascota_propietario")
+    private Integer id_mascota_propietario;
 
-    @Column(name = "nombre", nullable = false, length = 20)
-    private String nombre;
+    @ManyToOne
+    @JoinColumn(name = "id_propietario")
+    private Propietarios propietarios;
+
+    @ManyToOne
+    @JoinColumn(name = "id_mascota")
+    private Mascotas mascotas;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")//Despues agregar opcion para que no sea nulo
     private Integer estado;
@@ -38,21 +44,17 @@ public class TipoMascota {
     @Column(name = "updated_by")
     private Integer updatedBy;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "tipoMascota")
-    private List<Mascotas> mascotas;
-
     @Override
     public String toString() {
-        return "TipoMascota{" +
-                "idTipoMascota=" + idTipoMascota +
-                ", nombre='" + nombre + '\'' +
+        return "MascotasPropietarios{" +
+                "id_mascota_propietario=" + id_mascota_propietario +
+                ", propietarios=" + propietarios +
+                ", mascotas=" + mascotas +
                 ", estado=" + estado +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", createdBy=" + createdBy +
                 ", updatedBy=" + updatedBy +
-                ", mascotas=" + mascotas +
                 '}';
     }
 }

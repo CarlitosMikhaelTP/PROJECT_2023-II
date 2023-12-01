@@ -19,8 +19,8 @@ import java.sql.Timestamp;
 public class PaseadoresDTO {
 
     private int id;
-    private int userId; //id del usuario
-    private int id_categoria;
+    private Integer userId; //id del usuario
+    private Integer id_categoria;
     private Integer calificacion;
     private String descripcion;
     private String experiencia;

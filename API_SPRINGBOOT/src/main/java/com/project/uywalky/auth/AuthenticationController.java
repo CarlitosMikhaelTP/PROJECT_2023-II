@@ -1,11 +1,10 @@
 package com.project.uywalky.auth;
 
-import com.project.uywalky.Entity.Paseadores;
+
 import com.project.uywalky.Entity.TipoUsuario;
 import com.project.uywalky.Service.TipoUsuarioService;
 import com.project.uywalky.Service.UserService;
 import com.project.uywalky.dto.NuevoUsuarioDTO;
-import com.project.uywalky.dto.PaseadoresDTO;
 import com.project.uywalky.exception.TipoUsuarioNotFoundException;
 import com.project.uywalky.repository.TipoUsuarioRepository;
 import com.project.uywalky.user.User;

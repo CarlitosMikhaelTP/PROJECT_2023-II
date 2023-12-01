@@ -28,7 +28,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id //Identificador único de esta clase de usuario
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Incrementará el id automáticamente
+    @GeneratedValue//Incrementará el id automáticamente
     @Column(name = "id")
     private Integer id;
 

@@ -24,8 +24,6 @@ public class PaseadoresService {
     private final UserRepository userRepository;
     private final CategoriasRepository categoriasRepository;
 
-
-
     // Spring se encargará de proveer una instancia de PaseadoresRepository y pasarla al constructor
     // de PaseadoresService cuando se crea una instancia de PaseadoresService.
     // Forma de llamarlo distinta a la de arriba @Autowired // Para imyectar los métodos que se crean en PaseadoresRepository
@@ -53,7 +51,7 @@ public class PaseadoresService {
                 .user(user)
                 .build();
         // Guardando al paseador en la base de datos usando el repositorio
-        paseadores=  paseadoresRepository.save(paseadores);
+        paseadores =  paseadoresRepository.save(paseadores);
 
         return new PaseadoresDTO(paseadores);
     }
@@ -79,6 +77,39 @@ public class PaseadoresService {
         paseadoresRepository.deleteById(id_paseador);
     }
 
+    // Servicio para editar un registro de paseador:
+    public PaseadoresDTO editarPaseador(Integer id_paseador, PaseadoresDTO paseadoresDTO) {
+        // Buscando al paseador por su ID
+        Paseadores paseadorExistente = paseadoresRepository.findById(id_paseador)
+                .orElseThrow(() -> new PaseadorNotFounException("Paseador no encontrado"));
+        // Obtener el usuario y la categoría del DTO o mantener los valores existentes si no se proporcionan en el DTO
+        User user = paseadorExistente.getUser();
+        if (paseadoresDTO.getUserId() != null) {
+            user = userRepository.findById(paseadoresDTO.getUserId())
+                    .orElseThrow(() -> new UserNotFoundException("Id de usuario no encontrado"));
+        }
+        Categorias categorias = paseadorExistente.getCategorias();
+        if (paseadoresDTO.getId_categoria() != null) {
+            categorias = categoriasRepository.findById(paseadoresDTO.getId_categoria())
+                    .orElseThrow(() -> new CategoriaNotFoundException("Id de la categoría no encontrado"));
+        }
+        // Actualizar los datos del paseador con los valores del DTO
+        paseadorExistente.setCalificacion(paseadoresDTO.getCalificacion());
+        paseadorExistente.setDescripcion(paseadoresDTO.getDescripcion());
+        paseadorExistente.setExperiencia(paseadoresDTO.getExperiencia());
+        paseadorExistente.setUbicacion(paseadoresDTO.getUbicacion());
+        paseadorExistente.setTarifa(paseadoresDTO.getTarifa());
+        paseadorExistente.setSaldo(paseadoresDTO.getSaldo());
+        paseadorExistente.setDisponibilidad(paseadoresDTO.getDisponibilidad());
+        paseadorExistente.setFoto(paseadoresDTO.getFoto());
+        paseadorExistente.setCategorias(categorias);
+
+
+        // Guardar los cambios en la base de datos usando el repositorio
+        paseadorExistente = paseadoresRepository.save(paseadorExistente);
+
+        return new PaseadoresDTO(paseadorExistente);
+    }
 
 
 }

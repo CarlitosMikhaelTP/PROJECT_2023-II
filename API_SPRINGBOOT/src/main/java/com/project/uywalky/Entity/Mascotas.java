@@ -76,5 +76,26 @@ public class Mascotas {
     @OneToMany(mappedBy = "mascotas", cascade = CascadeType.ALL)
     private List<MascotasPropietarios> mascotasPropietarios;
 
-
+    @Override
+    public String toString() {
+        return "Mascotas{" +
+                "idMascota=" + idMascota +
+                ", tipoMascota=" + tipoMascota +
+                ", nombre='" + nombre + '\'' +
+                ", raza='" + raza + '\'' +
+                ", peso='" + peso + '\'' +
+                ", edad=" + edad +
+                ", foto=" + foto +
+                ", necesidades='" + necesidades + '\'' +
+                ", estado=" + estado +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", createdBy=" + createdBy +
+                ", updatedBy=" + updatedBy +
+                ", propietarios=" + propietarios +
+                ", paseos=" + paseos +
+                ", reservas=" + reservas +
+                ", mascotasPropietarios=" + mascotasPropietarios +
+                '}';
+    }
 }

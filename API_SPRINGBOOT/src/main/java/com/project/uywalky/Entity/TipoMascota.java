@@ -3,6 +3,7 @@ package com.project.uywalky.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -18,6 +20,7 @@ public class TipoMascota {
 
     @Id
     @GeneratedValue
+    @Column(name = "id_tipo_mascota")
     private Integer idTipoMascota;
 
     @Column(name = "nombre", nullable = false, length = 20)

@@ -1,6 +1,5 @@
 package com.project.uywalky.Entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.uywalky.user.User;
 import jakarta.persistence.*;
@@ -19,18 +18,20 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "Paseadores")
-
 public class Paseadores {
 
+    // Id del paseador
     @Id
     @GeneratedValue
     @Column(name = "id_paseador")
     private Integer id_paseador;
 
+    // Id de usuario del paseador
     @OneToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private User user; //id del usuario
 
+    // Id de la categoria del paseador
     @ManyToOne
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categorias categorias;

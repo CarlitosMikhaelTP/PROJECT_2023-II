@@ -18,15 +18,16 @@ import java.util.List;
 public class Propietarios {
 
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_propietario")
     private Integer id_propietario;
 
     @OneToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "id_mascota")
+    @JoinColumn(name = "id_mascota", nullable = false)
     private Mascotas mascotas;
 
     @Column(name = "calificacion")
@@ -42,7 +43,7 @@ public class Propietarios {
     private Integer saldo;
 
     @Column(name = "disponibilidad")
-    private Boolean disponibilidad;
+    private Integer disponibilidad;
 
     @Column(name = "foto", length = 3)
     private String foto;
@@ -94,8 +95,8 @@ public class Propietarios {
     public String toString() {
         return "Propietarios{" +
                 "id_propietario=" + id_propietario +
-                ", user=" + user +
-                ", mascotas=" + mascotas +
+                ", userId=" + (user != null ? user.getId() : null)  +
+                ", mascotasId=" + (mascotas != null ? mascotas.getIdMascota() : null)  +
                 ", calificacion=" + calificacion +
                 ", comentario='" + comentario + '\'' +
                 ", preferencias_paseo='" + preferencias_paseo + '\'' +

@@ -2,25 +2,25 @@ package com.project.uywalky.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.project.uywalky.Entity.Mascotas;
-import com.project.uywalky.Entity.TipoMascota;
-import jakarta.annotation.security.DenyAll;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
+import com.project.uywalky.Entity.LocacionPaseador;
+import com.project.uywalky.Entity.Paseadores;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TipoMascotaDTO {
-
-    @JsonProperty("id_tipo_mascota")
+public class LocacionPaseadorDTO {
+    @JsonProperty("id_locacion_paseador")
     private int id;
-    private String nombre;
+    private Integer paseadoresId;// Id del paseador
+    private BigDecimal latitud;
+    private BigDecimal longitud;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer estado;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -32,9 +32,11 @@ public class TipoMascotaDTO {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer updatedBy;
 
-    public TipoMascotaDTO(TipoMascota tipoMascota){
-        this.id = tipoMascota.getIdTipoMascota();
-        this.nombre = tipoMascota.getNombre();
+    public LocacionPaseadorDTO(LocacionPaseador locacionPaseador){
+        this.id = locacionPaseador.getId_locacion_paseador();
+        this.paseadoresId = locacionPaseador.getPaseadores().getId_paseador();
+        this.latitud = locacionPaseador.getLatitud();
+        this.longitud = locacionPaseador.getLongitud();
     }
 
 }

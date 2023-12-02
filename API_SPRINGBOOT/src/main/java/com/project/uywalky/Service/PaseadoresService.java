@@ -57,7 +57,6 @@ public class PaseadoresService {
                 .build();
         // Guardando al paseador en la base de datos usando el repositorio
         paseadores =  paseadoresRepository.save(paseadores);
-
         return new PaseadoresDTO(paseadores);
     }
 
@@ -108,7 +107,6 @@ public class PaseadoresService {
         paseadorExistente.setDisponibilidad(paseadoresDTO.getDisponibilidad());
         paseadorExistente.setFoto(paseadoresDTO.getFoto());
         paseadorExistente.setCategorias(categorias);
-
 
         // Guardar los cambios en la base de datos usando el repositorio
         paseadorExistente = paseadoresRepository.save(paseadorExistente);

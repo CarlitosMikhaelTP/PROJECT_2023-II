@@ -94,6 +94,10 @@ public class Propietarios {
     @OneToMany(mappedBy = "propietarios")
     private List<Reservas> reservas;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "propietarios")
+    private LocacionPropietario locacionPropietario;
+
     @Override
     public String toString() {
         return "Propietarios{" +

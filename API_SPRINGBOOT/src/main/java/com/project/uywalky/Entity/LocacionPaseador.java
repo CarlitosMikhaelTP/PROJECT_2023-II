@@ -1,30 +1,37 @@
 package com.project.uywalky.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "Tipos_Mascota")
-public class TipoMascota {
+@Table(name = "Locacion_Paseador")
+public class LocacionPaseador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tipo_mascota")
-    private Integer idTipoMascota;
+    @Column(name = "id_locacion_paseador")
+    private Integer id_locacion_paseador;
 
-    @Column(name = "nombre", nullable = false, length = 20)
-    private String nombre;
+    // Id del paseador
+    @OneToOne
+    @JoinColumn(name = "id_paseador", nullable = false)
+    private Paseadores paseadores;
+
+    @Column(name ="latitud")
+    private BigDecimal latitud;
+
+    @Column(name = "longitud")
+    private BigDecimal longitud;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")//Despues agregar opcion para que no sea nulo
     private Integer estado;
@@ -41,21 +48,19 @@ public class TipoMascota {
     @Column(name = "updated_by")
     private Integer updatedBy;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "tipoMascota")
-    private List<Mascotas> mascotas;
-
     @Override
     public String toString() {
-        return "TipoMascota{" +
-                "idTipoMascota=" + idTipoMascota +
-                ", nombre='" + nombre + '\'' +
+        return "LocacionPaseador{" +
+                "id_locacion_paseador=" + id_locacion_paseador +
+                ", paseadores=" + paseadores +
+                ", latitud=" + latitud +
+                ", longitud=" + longitud +
                 ", estado=" + estado +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", createdBy=" + createdBy +
                 ", updatedBy=" + updatedBy +
-                ", mascotas=" + mascotas +
                 '}';
     }
 }
+

@@ -22,7 +22,7 @@ public class Paseadores {
 
     // Id del paseador
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_paseador")
     private Integer id_paseador;
 
@@ -94,6 +94,10 @@ public class Paseadores {
     @JsonIgnore
     @OneToMany(mappedBy = "paseadores")
     private List<Reservas> reservas;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "paseadores")
+    private LocacionPaseador locacionPaseador;
 
 
     @Override

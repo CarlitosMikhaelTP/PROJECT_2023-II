@@ -1,96 +1,37 @@
 package com.project.uywalky.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.uywalky.Entity.MascotasPropietarios;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.sql.Timestamp;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Mascotas_PropietariosDTO {
 
-    private int propietarios;
-    private int mascotas;
+    @JsonProperty("id_mascota_propietario")
+    private int id;
+    private Integer propietariosId; //
+    private Integer mascotasId;
     private Integer estado;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Timestamp createdAt;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Timestamp updatedAt;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer createdBy;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer updatedBy;
 
-    public Mascotas_PropietariosDTO() {
-    }
-
-    public Mascotas_PropietariosDTO(int propietarios, int mascotas, Integer estado, Timestamp createdAt, Timestamp updatedAt, Integer createdBy, Integer updatedBy) {
-        this.propietarios = propietarios;
-        this.mascotas = mascotas;
-        this.estado = estado;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
-    }
-
-    public int getPropietarios() {
-        return propietarios;
-    }
-
-    public void setPropietarios(int propietarios) {
-        this.propietarios = propietarios;
-    }
-
-    public int getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(int mascotas) {
-        this.mascotas = mascotas;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Integer getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Integer createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Integer getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(Integer updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    @Override
-    public String toString() {
-        return "Mascotas_PropietariosDTO{" +
-                "propietarios=" + propietarios +
-                ", mascotas=" + mascotas +
-                ", estado=" + estado +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", createdBy=" + createdBy +
-                ", updatedBy=" + updatedBy +
-                '}';
+    public Mascotas_PropietariosDTO(MascotasPropietarios mascotasPropietarios){
+        this.id = mascotasPropietarios.getId_mascota_propietario();
+        this.propietariosId = mascotasPropietarios.getPropietarios().getId_propietario();
+        this.mascotasId = mascotasPropietarios.getMascotas().getId_mascota();
+        this.estado = mascotasPropietarios.getEstado();
     }
 }

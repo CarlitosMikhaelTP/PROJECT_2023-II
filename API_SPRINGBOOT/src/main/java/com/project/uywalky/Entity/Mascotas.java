@@ -19,9 +19,9 @@ import java.util.List;
 public class Mascotas {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mascota")
-    private Integer idMascota;
+    private Integer id_mascota;
 
     @ManyToOne
     @JoinColumn(name = "Id_tipo_mascota")
@@ -79,8 +79,8 @@ public class Mascotas {
     @Override
     public String toString() {
         return "Mascotas{" +
-                "idMascota=" + idMascota +
-                ", tipoMascota=" + tipoMascota +
+                "idMascota=" + id_mascota +
+                ", tipoMascotaId=" + (tipoMascota != null ? tipoMascota.getIdTipoMascota() : null) +
                 ", nombre='" + nombre + '\'' +
                 ", raza='" + raza + '\'' +
                 ", peso='" + peso + '\'' +

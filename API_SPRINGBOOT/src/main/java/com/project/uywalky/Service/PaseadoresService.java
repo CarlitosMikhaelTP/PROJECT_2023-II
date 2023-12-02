@@ -4,6 +4,7 @@ import com.project.uywalky.Entity.Categorias;
 import com.project.uywalky.Entity.Paseadores;
 import com.project.uywalky.dto.PaseadoresDTO;
 import com.project.uywalky.exception.CategoriaNotFoundException;
+import com.project.uywalky.exception.PaseadorExistenteException;
 import com.project.uywalky.exception.PaseadorNotFounException;
 import com.project.uywalky.exception.UserNotFoundException;
 import com.project.uywalky.repository.CategoriasRepository;
@@ -35,6 +36,10 @@ public class PaseadoresService {
     public PaseadoresDTO registrarPaseadores(PaseadoresDTO paseadoresDTO){
         User user = userRepository.findById(paseadoresDTO.getUserId())
                 .orElseThrow(()-> new UserNotFoundException("Id de usuario no encontrado"));
+        // Lógica para verificar si el usuario ya tiene un paseador asignado
+        if (paseadoresRepository.existsByUser(user)){
+            throw new PaseadorExistenteException("Este usuario ya tiene una cuenta como paseador");
+        }
         Categorias categorias = categoriasRepository.findById(paseadoresDTO.getId_categoria())
                 .orElseThrow(() -> new CategoriaNotFoundException("Id de la categoria no encontrado"));
         // Implementar validaciones necesarias después
@@ -107,7 +112,6 @@ public class PaseadoresService {
 
         // Guardar los cambios en la base de datos usando el repositorio
         paseadorExistente = paseadoresRepository.save(paseadorExistente);
-
         return new PaseadoresDTO(paseadorExistente);
     }
 

@@ -46,7 +46,7 @@ public class PaseadoresDTO {
         this.id_categoria = paseadores.getCategorias().getId_categoria();
         this.calificacion = paseadores.getCalificacion();
         this.descripcion = paseadores.getDescripcion();
-        this.experiencia = paseadores.getDescripcion();
+        this.experiencia = paseadores.getExperiencia();
         this.ubicacion = paseadores.getUbicacion();
         this.tarifa = paseadores.getTarifa();
         this.saldo = paseadores.getSaldo();

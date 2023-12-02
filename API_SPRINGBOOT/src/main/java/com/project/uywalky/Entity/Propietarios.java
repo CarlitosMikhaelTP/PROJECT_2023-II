@@ -45,6 +45,9 @@ public class Propietarios {
     @Column(name = "disponibilidad")
     private Integer disponibilidad;
 
+    @Column(name = "ubicacion")
+    private Integer ubicacion;
+
     @Column(name = "foto", length = 3)
     private String foto;
 
@@ -96,12 +99,13 @@ public class Propietarios {
         return "Propietarios{" +
                 "id_propietario=" + id_propietario +
                 ", userId=" + (user != null ? user.getId() : null)  +
-                ", mascotasId=" + (mascotas != null ? mascotas.getIdMascota() : null)  +
+                ", mascotasId=" + (mascotas != null ? mascotas.getId_mascota() : null)  +
                 ", calificacion=" + calificacion +
                 ", comentario='" + comentario + '\'' +
                 ", preferencias_paseo='" + preferencias_paseo + '\'' +
                 ", saldo=" + saldo +
                 ", disponibilidad=" + disponibilidad +
+                ", ubicacion=" + ubicacion +
                 ", foto='" + foto + '\'' +
                 ", estado=" + estado +
                 ", createdAt=" + createdAt +

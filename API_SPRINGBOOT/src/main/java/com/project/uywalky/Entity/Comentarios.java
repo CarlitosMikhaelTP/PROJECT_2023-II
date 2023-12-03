@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 public class Comentarios {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_comentario")
     private Integer idComentario;
 

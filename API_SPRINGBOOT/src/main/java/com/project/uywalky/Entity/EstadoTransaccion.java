@@ -20,7 +20,7 @@ import java.util.List;
 public class EstadoTransaccion {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_estado_transaccion")
     private Integer id_estado_transaccion;
 

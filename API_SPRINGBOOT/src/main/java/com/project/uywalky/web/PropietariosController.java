@@ -22,6 +22,7 @@ public class PropietariosController {
 
     private final PropietariosService propietariosService;
 
+    // ENDPOINT PARA REGISTRAR PROPIETARIOS
     @PostMapping("/registrar")
     public ResponseEntity<PropietariosDTO> registrarPropietarios(@RequestBody PropietariosDTO propietariosDTO){
         PropietariosDTO propietariosRegisrado = propietariosService.registrarPropietarios(propietariosDTO);

@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Table(name = "Ubicaciones")
 public class Ubicaciones {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ubicacion")
     private Integer id_ubicacion;
 

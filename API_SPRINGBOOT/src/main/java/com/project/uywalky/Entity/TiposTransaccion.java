@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+@Data
 @Entity
 @Builder
 @NoArgsConstructor
@@ -17,7 +19,7 @@ import java.util.List;
 public class TiposTransaccion {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_transaccion")
     private Integer id_tipo_transaccion;
 

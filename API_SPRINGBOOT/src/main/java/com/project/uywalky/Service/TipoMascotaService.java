@@ -54,6 +54,7 @@ public class TipoMascotaService {
                 .orElseThrow(()-> new TipoMascotaNotFoundException("Tipo de Mascota no encontrado"));
         // Actualizando los datos del propietario con los valores del DTO
         tipoMascotaExistente.setNombre(tipoMascotaDTO.getNombre());
+        tipoMascotaExistente.setEstado(tipoMascotaDTO.getEstado());
 
         tipoMascotaExistente = tipoMascotaRepository.save(tipoMascotaExistente);
         return new TipoMascotaDTO(tipoMascotaExistente);

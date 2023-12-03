@@ -65,14 +65,6 @@ public class Mascotas {
     private List<Propietarios> propietarios;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "mascotas")
-    private Paseos paseos;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "mascotas")
-    private Reservas reservas;
-
-    @JsonIgnore
     @OneToMany(mappedBy = "mascotas", cascade = CascadeType.ALL)
     private List<MascotasPropietarios> mascotasPropietarios;
 
@@ -93,8 +85,6 @@ public class Mascotas {
                 ", createdBy=" + createdBy +
                 ", updatedBy=" + updatedBy +
                 ", propietarios=" + propietarios +
-                ", paseos=" + paseos +
-                ", reservas=" + reservas +
                 ", mascotasPropietarios=" + mascotasPropietarios +
                 '}';
     }

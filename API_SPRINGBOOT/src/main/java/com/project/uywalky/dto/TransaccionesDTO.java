@@ -1,136 +1,45 @@
 package com.project.uywalky.dto;
 
-import com.project.uywalky.Entity.EstadoTransaccion;
-import com.project.uywalky.Entity.Paseadores;
-import com.project.uywalky.Entity.Propietarios;
-import com.project.uywalky.Entity.TiposTransaccion;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.uywalky.Entity.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TransaccionesDTO {
-    private int paseadores;
-    private int propietarios;
-    private int tiposTransaccion;
-    private int estadoTransaccion;
+    @JsonProperty("id_transaccion")
+    private int id;
+    private Integer paseadorId;
+    private Integer propietarioId;
+    private Integer tiposTransaccionId;
+    private Integer estadoTransaccionId;
     private Integer monto;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer estado;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Timestamp createdAt;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Timestamp updatedAt;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer createdBy;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer updatedBy;
 
-    public TransaccionesDTO() {
+    public TransaccionesDTO(Transacciones transacciones){
+        this.id = transacciones.getId_transaccion();
+        this.paseadorId = transacciones.getPaseadores().getId_paseador();
+        this.propietarioId = transacciones.getPropietarios().getId_propietario();
+        this.tiposTransaccionId = transacciones.getTiposTransaccion().getId_tipo_transaccion();
+        this.estadoTransaccionId = transacciones.getEstadoTransaccion().getId_estado_transaccion();
+        this.monto = transacciones.getMonto();
     }
 
-    public TransaccionesDTO(int paseadores, int propietarios, int tiposTransaccion, int estadoTransaccion, Integer monto, Integer estado, Timestamp createdAt, Timestamp updatedAt, Integer createdBy, Integer updatedBy) {
-        this.paseadores = paseadores;
-        this.propietarios = propietarios;
-        this.tiposTransaccion = tiposTransaccion;
-        this.estadoTransaccion = estadoTransaccion;
-        this.monto = monto;
-        this.estado = estado;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
-    }
-
-    public int getPaseadores() {
-        return paseadores;
-    }
-
-    public void setPaseadores(int paseadores) {
-        this.paseadores = paseadores;
-    }
-
-    public int getPropietarios() {
-        return propietarios;
-    }
-
-    public void setPropietarios(int propietarios) {
-        this.propietarios = propietarios;
-    }
-
-    public int getTiposTransaccion() {
-        return tiposTransaccion;
-    }
-
-    public void setTiposTransaccion(int tiposTransaccion) {
-        this.tiposTransaccion = tiposTransaccion;
-    }
-
-    public int getEstadoTransaccion() {
-        return estadoTransaccion;
-    }
-
-    public void setEstadoTransaccion(int estadoTransaccion) {
-        this.estadoTransaccion = estadoTransaccion;
-    }
-
-    public Integer getMonto() {
-        return monto;
-    }
-
-    public void setMonto(Integer monto) {
-        this.monto = monto;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Integer getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Integer createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Integer getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(Integer updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    @Override
-    public String toString() {
-        return "TransaccionesDTO{" +
-                "paseadores=" + paseadores +
-                ", propietarios=" + propietarios +
-                ", tiposTransaccion=" + tiposTransaccion +
-                ", estadoTransaccion=" + estadoTransaccion +
-                ", monto=" + monto +
-                ", estado=" + estado +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", createdBy=" + createdBy +
-                ", updatedBy=" + updatedBy +
-                '}';
-    }
 }

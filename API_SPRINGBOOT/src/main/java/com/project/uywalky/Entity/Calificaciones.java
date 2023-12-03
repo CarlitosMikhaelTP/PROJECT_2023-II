@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 public class Calificaciones {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_calificacion")
     private Integer idCalificacion;
 

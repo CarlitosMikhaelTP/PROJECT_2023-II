@@ -81,10 +81,6 @@ public class Paseadores {
 
     @JsonIgnore
     @OneToMany(mappedBy = "paseadores")
-    private List<Paseos> paseos;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "paseadores")
     private List<Calificaciones> calificaciones;
 
     @JsonIgnore

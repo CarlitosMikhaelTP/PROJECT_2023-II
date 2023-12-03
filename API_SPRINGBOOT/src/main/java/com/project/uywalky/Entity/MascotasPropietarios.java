@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 public class MascotasPropietarios {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mascota_propietario")
     private Integer id_mascota_propietario;
 

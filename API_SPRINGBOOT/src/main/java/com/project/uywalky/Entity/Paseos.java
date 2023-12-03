@@ -20,24 +20,12 @@ import java.util.List;
 public class Paseos {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPaseo;
 
     @OneToOne
     @JoinColumn(name = "id_reserva")
     private Reservas reservas;
-
-    @OneToOne
-    @JoinColumn(name = "id_mascota")
-    private Mascotas mascotas;
-
-    @ManyToOne
-    @JoinColumn(name = "id_paseador")
-    private Paseadores paseadores;
-
-    @ManyToOne
-    @JoinColumn(name = "id_propietario")
-    private Propietarios propietarios;
 
     @Column(name = "comentario")
     private String comentario;
@@ -92,9 +80,6 @@ public class Paseos {
         return "Paseos{" +
                 "idPaseo=" + idPaseo +
                 ", reservas=" + reservas +
-                ", mascotas=" + mascotas +
-                ", paseadores=" + paseadores +
-                ", propietarios=" + propietarios +
                 ", comentario='" + comentario + '\'' +
                 ", calificacion='" + calificacion + '\'' +
                 ", costo=" + costo +
@@ -109,6 +94,7 @@ public class Paseos {
                 ", updatedBy=" + updatedBy +
                 ", comentarios=" + comentarios +
                 ", calificaciones=" + calificaciones +
+                ", ubicaciones=" + ubicaciones +
                 '}';
     }
 }

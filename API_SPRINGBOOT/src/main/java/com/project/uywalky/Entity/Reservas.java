@@ -19,7 +19,7 @@ import java.util.List;
 public class Reservas {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reserva")
     private Integer idReserva;
 
@@ -31,12 +31,8 @@ public class Reservas {
     @JoinColumn(name = "id_paseador")
     private Paseadores paseadores;
 
-    @OneToOne
-    @JoinColumn(name = "id_mascota")
-    private Mascotas mascotas;
-
     @Column(name = "costo", nullable = false)
-    private Integer costo;
+    private Integer costo; // costo referencial
 
     @Column(name = "fecha_reserva", nullable = false)
     private String fecha_reserva;
@@ -78,7 +74,6 @@ public class Reservas {
                 "idReserva=" + idReserva +
                 ", propietarios=" + propietarios +
                 ", paseadores=" + paseadores +
-                ", mascotas=" + mascotas +
                 ", costo=" + costo +
                 ", fecha_reserva='" + fecha_reserva + '\'' +
                 ", hora_reserva='" + hora_reserva + '\'' +

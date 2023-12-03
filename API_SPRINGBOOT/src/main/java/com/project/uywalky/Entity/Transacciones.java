@@ -4,20 +4,22 @@ package com.project.uywalky.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 import java.sql.Timestamp;
 
-@Entity
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "Transacciones")
 public class Transacciones {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transaccion")
     private Integer id_transaccion;
 

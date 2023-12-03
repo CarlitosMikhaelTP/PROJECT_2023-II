@@ -76,10 +76,6 @@ public class Propietarios {
 
     @JsonIgnore
     @OneToMany(mappedBy = "propietarios", cascade = CascadeType.ALL)
-    private List<Paseos> paseos;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "propietarios", cascade = CascadeType.ALL)
     private List<Comentarios> comentarios;
 
     @JsonIgnore

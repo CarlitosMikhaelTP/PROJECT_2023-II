@@ -1,18 +1,17 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.Categorias;
-import com.project.uywalky.Entity.Paseadores;
-import com.project.uywalky.dto.PaseadoresDTO;
-import com.project.uywalky.exception.CategoriaNotFoundException;
-import com.project.uywalky.exception.PaseadorExistenteException;
-import com.project.uywalky.exception.PaseadorNotFounException;
-import com.project.uywalky.exception.UserNotFoundException;
-import com.project.uywalky.repository.CategoriasRepository;
-import com.project.uywalky.repository.PaseadoresRepository;
-import com.project.uywalky.user.User;
-import com.project.uywalky.user.UserRepository;
+import com.project.uywalky.Entity.PaseadoresEntitys.Categorias;
+import com.project.uywalky.Entity.PaseadoresEntitys.Paseadores;
+import com.project.uywalky.Dto.PaseadoresDTO.PaseadoresDTO;
+import com.project.uywalky.Exceptions.NotFound.CategoriaNotFoundException;
+import com.project.uywalky.Exceptions.Exist.PaseadorExistenteException;
+import com.project.uywalky.Exceptions.NotFound.PaseadorNotFounException;
+import com.project.uywalky.Exceptions.NotFound.UserNotFoundException;
+import com.project.uywalky.Repository.PaseadoresRepo.CategoriasRepository;
+import com.project.uywalky.Repository.PaseadoresRepo.PaseadoresRepository;
+import com.project.uywalky.Entity.UsuariosEntitys.User;
+import com.project.uywalky.Repository.UsuariosRepo.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

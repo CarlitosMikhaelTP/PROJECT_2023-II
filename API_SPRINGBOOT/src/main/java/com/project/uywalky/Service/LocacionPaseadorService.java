@@ -1,13 +1,13 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.LocacionPaseador;
-import com.project.uywalky.Entity.Paseadores;
-import com.project.uywalky.dto.LocacionPaseadorDTO;
-import com.project.uywalky.exception.LocacionPaseadorExistenteException;
-import com.project.uywalky.exception.LocacionPaseadorNotFoundException;
-import com.project.uywalky.exception.PaseadorNotFounException;
-import com.project.uywalky.repository.LocacionPaseadorRepository;
-import com.project.uywalky.repository.PaseadoresRepository;
+import com.project.uywalky.Entity.PaseadoresEntitys.LocacionPaseador;
+import com.project.uywalky.Entity.PaseadoresEntitys.Paseadores;
+import com.project.uywalky.Dto.PaseadoresDTO.LocacionPaseadorDTO;
+import com.project.uywalky.Exceptions.Exist.LocacionPaseadorExistenteException;
+import com.project.uywalky.Exceptions.NotFound.LocacionPaseadorNotFoundException;
+import com.project.uywalky.Exceptions.NotFound.PaseadorNotFounException;
+import com.project.uywalky.Repository.PaseadoresRepo.LocacionPaseadorRepository;
+import com.project.uywalky.Repository.PaseadoresRepo.PaseadoresRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

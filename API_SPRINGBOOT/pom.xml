@@ -29,12 +29,25 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- Agregando dependencias para usar anotaciones y clases necesarias
+		 para realizar la validacion de datos en Java (@NotNull, @Min, @MAX)
+		 Usados para validar dato de entrada en mis clases
+
+		Java Validation API. Esta API te permite especificar reglas de validación directamente en tus clases,
+		lo que es útil para garantizar que los datos que ingresan a tu sistema cumplan con ciertos criterios
+		antes de ser procesados o almacenados.-->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -68,23 +81,11 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
-					</image>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
+
+
+
+
+
 	</build>
 
 </project>

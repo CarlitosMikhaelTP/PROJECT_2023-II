@@ -1,13 +1,13 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.Paseos;
-import com.project.uywalky.Entity.Reservas;
-import com.project.uywalky.dto.PaseosDTO;
-import com.project.uywalky.exception.PaseadorExistenteException;
-import com.project.uywalky.exception.PaseoNotFoundException;
-import com.project.uywalky.exception.ReservaNotFoundException;
-import com.project.uywalky.repository.PaseosRepository;
-import com.project.uywalky.repository.ReservasRepository;
+import com.project.uywalky.Entity.PaseosEntitys.Paseos;
+import com.project.uywalky.Entity.PaseosEntitys.Reservas;
+import com.project.uywalky.Dto.PaseosDTO.PaseosDTO;
+import com.project.uywalky.Exceptions.Exist.PaseadorExistenteException;
+import com.project.uywalky.Exceptions.NotFound.PaseoNotFoundException;
+import com.project.uywalky.Exceptions.NotFound.ReservaNotFoundException;
+import com.project.uywalky.Repository.PaseosRepo.PaseosRepository;
+import com.project.uywalky.Repository.PaseosRepo.ReservasRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

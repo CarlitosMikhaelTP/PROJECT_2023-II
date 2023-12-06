@@ -1,11 +1,9 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.Mascotas;
-import com.project.uywalky.Entity.TipoMascota;
-import com.project.uywalky.dto.MascotasDTO;
-import com.project.uywalky.dto.TipoMascotaDTO;
-import com.project.uywalky.exception.TipoMascotaNotFoundException;
-import com.project.uywalky.repository.TipoMascotaRepository;
+import com.project.uywalky.Entity.MascotasEntitys.TipoMascota;
+import com.project.uywalky.Dto.MascotasDTO.TipoMascotaDTO;
+import com.project.uywalky.Exceptions.NotFound.TipoMascotaNotFoundException;
+import com.project.uywalky.Repository.MascotasRepo.TipoMascotaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

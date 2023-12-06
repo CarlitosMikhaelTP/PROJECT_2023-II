@@ -1,16 +1,15 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.Paseadores;
-import com.project.uywalky.Entity.Propietarios;
-import com.project.uywalky.Entity.Reservas;
-import com.project.uywalky.dto.ReservasDTO;
-import com.project.uywalky.exception.PaseadorNotFounException;
-import com.project.uywalky.exception.PropietariosNotFoundException;
-import com.project.uywalky.exception.ReservaNotFoundException;
-import com.project.uywalky.repository.PaseadoresRepository;
-import com.project.uywalky.repository.PropietariosRepository;
-import com.project.uywalky.repository.ReservasRepository;
-import lombok.NoArgsConstructor;
+import com.project.uywalky.Entity.PaseadoresEntitys.Paseadores;
+import com.project.uywalky.Entity.PropietariosEntitys.Propietarios;
+import com.project.uywalky.Entity.PaseosEntitys.Reservas;
+import com.project.uywalky.Dto.PaseosDTO.ReservasDTO;
+import com.project.uywalky.Exceptions.NotFound.PaseadorNotFounException;
+import com.project.uywalky.Exceptions.NotFound.PropietariosNotFoundException;
+import com.project.uywalky.Exceptions.NotFound.ReservaNotFoundException;
+import com.project.uywalky.Repository.PaseadoresRepo.PaseadoresRepository;
+import com.project.uywalky.Repository.PropietariosRepo.PropietariosRepository;
+import com.project.uywalky.Repository.PaseosRepo.ReservasRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

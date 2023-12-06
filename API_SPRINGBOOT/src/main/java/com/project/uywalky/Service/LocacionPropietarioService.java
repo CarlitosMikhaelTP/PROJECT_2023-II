@@ -1,18 +1,13 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.LocacionPaseador;
-import com.project.uywalky.Entity.LocacionPropietario;
-import com.project.uywalky.Entity.Paseadores;
-import com.project.uywalky.Entity.Propietarios;
-import com.project.uywalky.dto.LocacionPaseadorDTO;
-import com.project.uywalky.dto.LocacionPropietarioDTO;
-import com.project.uywalky.exception.*;
-import com.project.uywalky.repository.LocacionPaseadorRepository;
-import com.project.uywalky.repository.LocacionPropietarioRepository;
-import com.project.uywalky.repository.PaseadoresRepository;
-import com.project.uywalky.repository.PropietariosRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.project.uywalky.Entity.PropietariosEntitys.LocacionPropietario;
+import com.project.uywalky.Entity.PropietariosEntitys.Propietarios;
+import com.project.uywalky.Dto.PropietariosDTO.LocacionPropietarioDTO;
+import com.project.uywalky.Exceptions.Exist.LocacionPropietarioExistenteException;
+import com.project.uywalky.Exceptions.NotFound.LocacionPropietarioNotFoundException;
+import com.project.uywalky.Exceptions.NotFound.PropietariosNotFoundException;
+import com.project.uywalky.Repository.PropietariosRepo.LocacionPropietarioRepository;
+import com.project.uywalky.Repository.PropietariosRepo.PropietariosRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

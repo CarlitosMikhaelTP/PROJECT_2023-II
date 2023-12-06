@@ -1,10 +1,10 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.TipoUsuario;
-import com.project.uywalky.dto.NuevoUsuarioDTO;
-import com.project.uywalky.repository.TipoUsuarioRepository;
-import com.project.uywalky.user.User;
-import com.project.uywalky.user.UserRepository;
+import com.project.uywalky.Entity.UsuariosEntitys.TipoUsuario;
+import com.project.uywalky.Dto.UsuariosDTO.NuevoUsuarioDTO;
+import com.project.uywalky.Repository.UsuariosRepo.TipoUsuarioRepository;
+import com.project.uywalky.Entity.UsuariosEntitys.User;
+import com.project.uywalky.Repository.UsuariosRepo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

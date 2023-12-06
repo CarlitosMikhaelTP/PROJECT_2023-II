@@ -1,11 +1,18 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.*;
-import com.project.uywalky.dto.TransaccionesDTO;
-import com.project.uywalky.exception.*;
-import com.project.uywalky.repository.*;
+import com.project.uywalky.Entity.PaseadoresEntitys.Paseadores;
+import com.project.uywalky.Entity.PropietariosEntitys.Propietarios;
+import com.project.uywalky.Entity.TransaccionesEntitys.EstadoTransaccion;
+import com.project.uywalky.Entity.TransaccionesEntitys.TiposTransaccion;
+import com.project.uywalky.Entity.TransaccionesEntitys.Transacciones;
+import com.project.uywalky.Dto.TransaccionesDTO.TransaccionesDTO;
+import com.project.uywalky.Exceptions.NotFound.*;
+import com.project.uywalky.Repository.PaseadoresRepo.PaseadoresRepository;
+import com.project.uywalky.Repository.PropietariosRepo.PropietariosRepository;
+import com.project.uywalky.Repository.TransaccionesRepo.EstadoTransaccionRepository;
+import com.project.uywalky.Repository.TransaccionesRepo.TiposTransaccionRepository;
+import com.project.uywalky.Repository.TransaccionesRepo.TransaccionesRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

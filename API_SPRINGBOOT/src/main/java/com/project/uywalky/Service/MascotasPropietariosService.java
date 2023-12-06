@@ -1,15 +1,15 @@
 package com.project.uywalky.Service;
 
-import com.project.uywalky.Entity.Mascotas;
-import com.project.uywalky.Entity.MascotasPropietarios;
-import com.project.uywalky.Entity.Propietarios;
-import com.project.uywalky.dto.Mascotas_PropietariosDTO;
-import com.project.uywalky.exception.MascotasNotFoundException;
-import com.project.uywalky.exception.MascotasPropietariosNotFoundException;
-import com.project.uywalky.exception.PropietariosNotFoundException;
-import com.project.uywalky.repository.MascotaRepository;
-import com.project.uywalky.repository.Mascotas_PropietariosRepository;
-import com.project.uywalky.repository.PropietariosRepository;
+import com.project.uywalky.Entity.MascotasEntitys.Mascotas;
+import com.project.uywalky.Entity.MascotasEntitys.MascotasPropietarios;
+import com.project.uywalky.Entity.PropietariosEntitys.Propietarios;
+import com.project.uywalky.Dto.MascotasDTO.Mascotas_PropietariosDTO;
+import com.project.uywalky.Exceptions.NotFound.MascotasNotFoundException;
+import com.project.uywalky.Exceptions.NotFound.MascotasPropietariosNotFoundException;
+import com.project.uywalky.Exceptions.NotFound.PropietariosNotFoundException;
+import com.project.uywalky.Repository.MascotasRepo.MascotaRepository;
+import com.project.uywalky.Repository.MascotasRepo.Mascotas_PropietariosRepository;
+import com.project.uywalky.Repository.PropietariosRepo.PropietariosRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

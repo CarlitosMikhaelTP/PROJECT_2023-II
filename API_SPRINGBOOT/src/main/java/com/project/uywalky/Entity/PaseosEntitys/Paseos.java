@@ -70,9 +70,7 @@ public class Paseos {
     @OneToMany(mappedBy = "paseos")
     private List<Calificaciones> calificaciones;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "paseos")
-    private Ubicaciones ubicaciones;
+
 
     @Override
     public String toString() {
@@ -93,7 +91,7 @@ public class Paseos {
                 ", updatedBy=" + updatedBy +
                 ", comentarios=" + comentarios +
                 ", calificaciones=" + calificaciones +
-                ", ubicaciones=" + ubicaciones +
+
                 '}';
     }
 }

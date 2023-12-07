@@ -26,7 +26,7 @@ public class TiposTransaccion {
     @Column(name = "nombre_tipo", nullable = false, length = 20)
     private String nombre_tipo;
 
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "descripcion", nullable = false) // text
     private String descripcion;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")//Despues agregar opcion para que no sea nulo

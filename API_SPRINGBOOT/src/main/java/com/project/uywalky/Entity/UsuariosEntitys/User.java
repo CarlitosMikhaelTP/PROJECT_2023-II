@@ -76,9 +76,13 @@ public class User implements UserDetails {
 
     @Column(name = "created_by")
     private Integer createdBy;
-
+// cambiar a Long
     @Column(name = "updated_by")
     private Integer updatedBy;
+
+    //@Column(columnDefinition = "TINYINT UNSIGNED DEFAULT 1")
+    //private Short estado; // Puedes usar Short para mapear un TINYINT UNSIGNED
+
     //////////////////////////////////////////////////////////////7////
     // JsonIgnore evita que ciertos campos sean serializados al convertir la entidad en JSON, especialmente si hay
     // campos sensibles o que no deben exponerse en las respuestas de la API, esto evita ciclos infinitos de serializacion

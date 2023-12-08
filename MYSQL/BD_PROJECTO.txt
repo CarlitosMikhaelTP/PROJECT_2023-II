@@ -1,4 +1,4 @@
--- Creacion de tabla Usuarios OFICIAL TERMINADA CHECK --
+-- Creacion de tabla Usuarios OFICIAL TERMINADA CHECK ENTITY--
 
 CREATE TABLE Usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -23,11 +23,11 @@ CREATE TABLE Usuarios (
 );
 
 
--- Creacion de tabla de tipos de usuarios oficial TERMINADA CHECK --
+-- Creacion de tabla de tipos de usuarios oficial TERMINADA CHECK ENTITY--
 
 CREATE TABLE Tipos_Usuario (
     id_tipo_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_tipo_usuarion VARCHAR(20) NOT NULL,
+    nombre_tipo_usuario VARCHAR(20) NOT NULL,
     descripcion TEXT NOT NULL, 
     estado TINYINT UNSIGNED DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -107,7 +107,7 @@ CREATE TABLE Propietarios (
     disponibilidad BOOLEAN NOT NULL,
     ubicacion VARCHAR(20) NOT NULL,
     foto LONGBLOB NOT NULL,
-    estado TINYINT DEAULT 1,
+    estado TINYINT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_by INT,
@@ -124,7 +124,7 @@ CREATE TABLE Locacion_Propietario (
     id_propietario INT NOT NULL, 
     latitud DECIMAL(10,8) NOT NULL, 
     longitud DECIMAL(10,8) NOT NULL,
-    estado TINYINT DEAULT 1,
+    estado TINYINT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_by INT,
@@ -269,7 +269,7 @@ CREATE TABLE Paseos (
     lugar VARCHAR(25),
     comentario TEXT,
     calificacion INT NOT NULL,
-    costo INT, -- se paga realmente
+    costo DECIMAL(10, 2) NOT NULL, 
     estado TINYINT DEFAULT 1, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

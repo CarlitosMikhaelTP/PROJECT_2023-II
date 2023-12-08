@@ -76,7 +76,7 @@ public class User implements UserDetails {
 
     @Column(name = "created_by")
     private Integer createdBy;
-// cambiar a Long
+
     @Column(name = "updated_by")
     private Integer updatedBy;
 

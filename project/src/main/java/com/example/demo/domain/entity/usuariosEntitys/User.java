@@ -3,17 +3,23 @@ package com.example.demo.domain.entity.usuariosEntitys;
 import com.example.demo.domain.entity.paseadoresEntitys.Paseadores;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Collections;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Usuarios")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,5 +77,63 @@ public class User {
     /////////// MAPEANDO CARDINALIDAD ////////////////////////////
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Paseadores paseadores;
+
+    ///////// EXTENDIENDO CLASE USER DETAIL ////////////////////
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities(){
+        return Collections.emptyList();
+    }
+    @Override
+    public String getPassword(){
+        return password;
+    }
+
+    @Override
+    public String getUsername(){
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked(){
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", tiposUsuarioId=" + (tiposUsuario != null ? tiposUsuario.getIdTipoUsuario() : null) +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", apodo='" + apodo + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", edad=" + edad +
+                ", celular='" + celular + '\'' +
+                ", dni='" + dni + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", estado=" + estado +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", createdBy=" + createdBy +
+                ", updatedBy=" + updatedBy +
+                '}';
+    }
+
+
 
 }

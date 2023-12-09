@@ -141,6 +141,4 @@ public class AuthenticationService {
         repository.delete(user);
     }
 
-    //Creación de servicio para buscar usuarios por numero de id
-
 }

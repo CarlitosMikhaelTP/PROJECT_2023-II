@@ -44,7 +44,7 @@ public class TiposUsuario {
     private User updatedBy;
 
     ///////// MAPEO DE CARDINALIDAD EN OTRAS TABLAS /////////////
-    @OneToMany(mappedBy = "tipoUsuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tiposUsuario", cascade = CascadeType.ALL)
     private List<User> users;
 
 }

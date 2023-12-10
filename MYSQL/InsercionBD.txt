@@ -1,4 +1,5 @@
 use project2023;
+-- Tomar en consideración la eliminación del campo foto -----
 -- Realizando inserciones a tipo de usuario ---
 INSERT INTO Tipos_Usuario (nombre_tipo_usuario, descripcion)
 VALUES 
@@ -16,7 +17,9 @@ VALUES
     (2, 'Pedro', 'López', 'pedrito', 'Calle Secundaria 789', 28, '456123789', '56781234', 'pedro@example.com', 'password789'),
     (1, 'Laura', 'Martínez', 'lau', 'Boulevard Principal 321', 35, '789456123', '43218765', 'laura@example.com', 'passwordabc');
 select * from usuarios;
-
+select * from categorias;
+describe paseadores;
+describe  usuarios;
 -- Realizando inserciones a la tabla de Categorias de paseadores de perros ---
 INSERT INTO Categorias (categoria_nombre, descripcion)
 VALUES 
@@ -24,7 +27,7 @@ VALUES
     ('Novato', 'Paseador nuevo en el campo, buscando experiencia y oportunidades.'),
     ('Exótico', 'Especializado en paseos con perros exóticos o poco comunes.');
 select * from categorias;
-
+describe paseadores;
 -- Realizando las inserciones a la tabla de paseadores --
 INSERT INTO Paseadores (
     id_usuario, id_categoria, calificacion, descripcion, experiencia, ubicacion, tarifa, saldo, disponibilidad, foto
@@ -156,3 +159,9 @@ VALUES
     (2, 'Muy divertido', 4),
     (3, 'Increíble experiencia', 5);
 select * from calificacionescomentarios;
+
+describe transacciones;
+describe locacion_propietario;
+describe paseos;
+ALTER TABLE Paseos
+MODIFY costo DECIMAL(10, 2) NOT NULL;

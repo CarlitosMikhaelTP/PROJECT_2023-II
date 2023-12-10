@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationResponse {
+
+    // Funciona como una DTO
+
     private String token;
     private Integer IdTipoUsuario; // Agregando el campo tipo de Usuario
 }

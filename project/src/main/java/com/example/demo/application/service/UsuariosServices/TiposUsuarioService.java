@@ -1,7 +1,7 @@
 package com.example.demo.application.service.UsuariosServices;
 
-import com.example.demo.domain.entity.usuariosEntitys.TiposUsuario;
-import com.example.demo.domain.repository.UsuariosRepos.TipoUsuarioRepository;
+import com.example.demo.domain.entity.usuarios.TiposUsuario;
+import com.example.demo.domain.repository.Usuarios.TipoUsuarioRepository;
 
 import java.util.List;
 

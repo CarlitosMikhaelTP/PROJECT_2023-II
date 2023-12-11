@@ -1,7 +1,9 @@
 package com.project.uywalky.Entity.UsuariosEntitys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.uywalky.Entity.PaseadoresEntitys.LocacionPaseador;
 import com.project.uywalky.Entity.PaseadoresEntitys.Paseadores;
+import com.project.uywalky.Entity.PropietariosEntitys.LocacionPropietario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -79,6 +81,10 @@ public class User implements UserDetails {
 
     @Column(name = "updated_by")
     private Integer updatedBy;
+
+    //@Column(columnDefinition = "TINYINT UNSIGNED DEFAULT 1")
+    //private Short estado; // Puedes usar Short para mapear un TINYINT UNSIGNED
+
     //////////////////////////////////////////////////////////////7////
     // JsonIgnore evita que ciertos campos sean serializados al convertir la entidad en JSON, especialmente si hay
     // campos sensibles o que no deben exponerse en las respuestas de la API, esto evita ciclos infinitos de serializacion
@@ -88,7 +94,13 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Paseadores paseadores;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "user")
+    private LocacionPaseador locacionPaseador;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "user")
+    private LocacionPropietario locacionPropietario;
     //////////////////////// ENTENDERLO MEJOR DESPUES //////////////////////////////
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

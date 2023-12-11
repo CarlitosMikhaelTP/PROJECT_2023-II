@@ -1,0 +1,167 @@
+use project2023;
+-- Tomar en consideración la eliminación del campo foto -----
+-- Realizando inserciones a tipo de usuario ---
+INSERT INTO Tipos_Usuario (nombre_tipo_usuario, descripcion)
+VALUES 
+    ('Propietario', 'Tipo de usuario dueño de la mascota que busca el servicio para que paseen a sus mascotas'),
+    ('Paseador', 'Tipo de usuario que brinda el servicio para pasear a las mascotas.'),
+    ('Administrador', 'Tipo de usuario con funciones de administrador.');
+    
+select * from Tipos_usuario;
+
+-- Realizando inserciones a la tabla de usuarios --
+INSERT INTO Usuarios (id_tipo_usuario, nombres, apellidos, apodo, direccion, edad, celular, dni, email, password)
+VALUES 
+    (1, 'Juan', 'Perez', 'juanito', 'Calle Principal 123', 30, '123456789', '12345678', 'juan@example.com', 'password123'),
+    (2, 'María', 'Gómez', 'mary', 'Avenida Central 456', 25, '987654321', '87654321', 'maria@example.com', 'password456'),
+    (2, 'Pedro', 'López', 'pedrito', 'Calle Secundaria 789', 28, '456123789', '56781234', 'pedro@example.com', 'password789'),
+    (1, 'Laura', 'Martínez', 'lau', 'Boulevard Principal 321', 35, '789456123', '43218765', 'laura@example.com', 'passwordabc');
+select * from usuarios;
+select * from categorias;
+describe paseadores;
+describe  usuarios;
+-- Realizando inserciones a la tabla de Categorias de paseadores de perros ---
+INSERT INTO Categorias (categoria_nombre, descripcion)
+VALUES 
+    ('Experto', 'Paseador con amplia experiencia en diversas razas y situaciones.'),
+    ('Novato', 'Paseador nuevo en el campo, buscando experiencia y oportunidades.'),
+    ('Exótico', 'Especializado en paseos con perros exóticos o poco comunes.');
+select * from categorias;
+describe paseadores;
+-- Realizando las inserciones a la tabla de paseadores --
+INSERT INTO Paseadores (
+    id_usuario, id_categoria, calificacion, descripcion, experiencia, ubicacion, tarifa, saldo, disponibilidad, foto
+)
+VALUES 
+    (1, 1, 4, 'Paseador experto en varias razas, con 5 años de experiencia.', 'Amplia experiencia en paseos largos y ejercicio para perros.', 'Ciudad A', 30.00, 500.00, true, 'URL_foto_1'),
+    (2, 2, 3, 'Paseador nuevo buscando aprender y mejorar habilidades.', 'Experiencia con perros medianos y pequeños.', 'Ciudad B', 20.00, 200.00, true, 'URL_foto_2'),
+    (3, 3, 5, 'Paseador especializado en perros exóticos y poco comunes.', 'Experiencia con razas raras y cuidado especializado.', 'Ciudad C', 40.00, 800.00, true, 'URL_foto_3');
+select * from paseadores;
+
+-- Realizando inserciones a la tabla de Locacion de paseadores ---
+INSERT INTO Locacion_Paseador (id_paseador, latitud, longitud)
+VALUES 
+    (1, 40.7128, -74.0060), -- Ejemplo de locación para el paseador con ID 1
+    (2, 34.0522, -18.2437), -- Ejemplo de locación para el paseador con ID 2
+    (3, 51.5074, -0.1278); -- Ejemplo de locación para el paseador con ID 3
+
+select * from locacion_paseador;
+-- Realizando inserciones en la tabla de propietrarios---
+INSERT INTO Propietarios (
+    id_usuario, calificacion, comentario, preferencias_paseo, saldo, disponibilidad, ubicacion, foto, created_by, updated_by
+)
+VALUES 
+    (1, 4, 'Buen propietario, siempre atento a las necesidades de la mascota.', 'Paseos largos y cuidado especializado.', 500.00, true, 'Ciudad A', 'URL_foto_1', 1, 1),
+    (2, 5, 'Excelente dueño, siempre cuida mucho a su mascota.', 'Paseos cortos y actividades al aire libre.', 800.00, true, 'Ciudad B', 'URL_foto_2', 2, 2),
+    (3, 3, 'Propietario regular, necesita mejorar el cuidado de su mascota.', 'Paseos diarios y entrenamiento.', 300.00, false, 'Ciudad C', 'URL_foto_3', 1, 2);
+
+select * from propietarios;
+
+-- Realizando insercion a la tabla de locación Propietario --
+INSERT INTO Locacion_Propietario (
+    id_propietario, latitud, longitud
+)
+VALUES 
+    (1, 40.7128, 74.00), -- Ejemplo de ubicación para el propietario con ID 1
+    (2, 34.0522, 18.47), -- Ejemplo de ubicación para el propietario con ID 2
+    (3, 51.5074, 0.127); -- Ejemplo de ubicación para el propietario con ID 3
+select * from locacion_propietario;
+
+
+-- Realizando inserciones a la tabla de tipos de transacciones --
+ INSERT INTO Tipos_Transaccion (
+    id_tipo_transaccion, nombre_tipo, descripcion
+)
+VALUES 
+    (1, 'Depósito', 'Transacciones de depósito de dinero.'),
+    (2, 'Retiro', 'Transacciones de retiro de dinero.'),
+    (3, 'Transferencia', 'Transacciones de transferencia de fondos entre cuentas.');
+select * from tipos_transaccion;
+
+-- Realizando inserciones a la tabla de estados de transacciones ---
+INSERT INTO Estados_Transaccion (
+    nombre_estado, descripcion
+)
+VALUES 
+    ('Pagado', 'Transacción completada y pagada.'),
+    ('Deuda', 'Transacción pendiente de pago.'),
+    ('Procesando', 'Transacción en proceso.');
+select * from estados_transaccion;
+
+-- Realizando inserciones a la tabla de Transacciones --
+INSERT INTO Transacciones (
+    id_paseador, id_propietario, id_tipo_transaccion, id_estado_transaccion, monto
+)
+VALUES 
+    (1, 1, 1, 1, 50.00), -- Ejemplo de transacción entre el paseador con ID 1 y el propietario con ID 1
+    (2, 2, 2, 2, 75.00), -- Ejemplo de transacción entre el paseador con ID 2 y el propietario con ID 2
+    (3, 3, 3, 3, 100.00); -- Ejemplo de transacción entre el paseador con ID 3 y el propietario con ID 3
+
+select * from transacciones;
+
+-- Realizando inserciones a la tabla de Tipos de mascotas ---
+INSERT INTO Tipos_Mascota (
+    nombre, estado
+)
+VALUES 
+    ('Perro', 1),
+    ('Gato', 1),
+    ('Pájaro', 1);
+
+select * from tipos_mascota;
+
+-- Realizando inserciones a la tabla de Mascotas  --
+INSERT INTO Mascotas (
+    id_tipo_mascota, nombre, raza, peso, edad, foto, necesidades
+)
+VALUES 
+    (1, 'Bobby', 'Labrador', '20 kg', '3 años', 'URL_foto_1', 'Alimento especial'),
+    (2, 'Luna', 'Siamés', '5 kg', '2 años', 'URL_foto_2', 'Juguetes interactivos'),
+    (3, 'Charlie', 'Canario', '0.1 kg', '1 año', 'URL_foto_3', 'Semillas variadas');
+select * from mascotas;
+
+-- Realizando inserciones a la tabla intermedia entre mascotas y propietarios --
+INSERT INTO Mascotas_Propietarios (
+    id_propietario, id_mascota
+)
+VALUES 
+    (1, 1), -- Ejemplo de asociación entre el propietario con ID 1 y la mascota con ID 1
+    (2, 2), -- Ejemplo de asociación entre el propietario con ID 2 y la mascota con ID 2
+    (3, 3); -- Ejemplo de asociación entre el propietario con ID 3 y la mascota con ID 3
+select * from mascotas_propietarios;
+
+-- Realizando registros a la tabla de reservas ---
+INSERT INTO Reservas (
+    id_propietario, id_paseador, monto, duracion_paseo, detalles, punto_encuentro, lugar_paseo
+)
+VALUES 
+    (1, 1, 50.00, '01:00:00', 'Paseo regular para Bobby', 'Parque Central', 'Zona residencial'),
+    (2, 2, 60.00, '00:45:00', 'Paseo corto para Luna', 'Plaza Principal', 'Área urbana'),
+    (3, 3, 70.00, '01:30:00', 'Paseo largo para Charlie', 'Paseo Marítimo', 'Playa');
+select * from reservas;
+
+-- Realizando registros en la tabla de paseos --
+INSERT INTO Paseos (
+    id_reserva, fecha_paseo, duracion_real, lugar, comentario, calificacion, costo
+)
+VALUES 
+    (1, '2023-12-07 10:00:00', '01:15:00', 'Parque Central', 'Buen paseo', 5, 50),
+    (2, '2023-12-08 14:30:00', '00:40:00', 'Plaza Principal', 'Paseo divertido', 4, 60),
+    (3, '2023-12-09 09:00:00', '01:45:00', 'Paseo Marítimo', 'Gran día de paseo', 5, 70);
+select * from paseos;
+
+-- Realizando registros a la tabla calificaciones y comentarios --
+INSERT INTO CalificacionesComentarios (
+    id_paseo, comentario, calificacion
+)
+VALUES 
+    (1, '¡Excelente paseo!', 5),
+    (2, 'Muy divertido', 4),
+    (3, 'Increíble experiencia', 5);
+select * from calificacionescomentarios;
+
+describe transacciones;
+describe locacion_propietario;
+describe paseos;
+ALTER TABLE Paseos
+MODIFY costo DECIMAL(10, 2) NOT NULL;

@@ -7,6 +7,7 @@ import com.project.uywalky.Entity.UsuariosEntitys.User;
 import com.project.uywalky.Exceptions.Exist.LocacionPaseadorExistenteException;
 import com.project.uywalky.Exceptions.NotFound.LocacionPaseadorNotFoundException;
 import com.project.uywalky.Exceptions.NotFound.PaseadorNotFounException;
+import com.project.uywalky.Exceptions.NotFound.UserNotFoundException;
 import com.project.uywalky.Repository.PaseadoresRepo.LocacionPaseadorRepository;
 import com.project.uywalky.Repository.PaseadoresRepo.PaseadoresRepository;
 import com.project.uywalky.Repository.UsuariosRepo.UserRepository;
@@ -24,9 +25,9 @@ public class LocacionPaseadorService {
 
     // Creación de servicio para registrar nuevas locaciones para el paseador
     public LocacionPaseadorDTO registrarLocacionPaseador(LocacionPaseadorDTO locacionPaseadorDTO){
-        User user = UserRepository.findById(locacionPaseadorDTO.getPaseadoresId())
-                .orElseThrow(()-> new PaseadorNotFounException("Id del paseador no encontrado"));
-        if (locacionPaseadorRepository.existsByPaseadores(paseadores)){
+        User user = userRepository.findById(locacionPaseadorDTO.getUsuarioId())
+                .orElseThrow(()-> new UserNotFoundException("Id del paseador no encontrado"));
+        if (locacionPaseadorRepository.existsByUser(user)){
             throw new LocacionPaseadorExistenteException("Esta locación ya tiene un id de paseador");
         }
         // Implementar las validaciones necesarias
@@ -67,15 +68,15 @@ public class LocacionPaseadorService {
         LocacionPaseador locacionPaseadorExistente = locacionPaseadorRepository.findById(id_locacion_paseador)
                 .orElseThrow(()-> new LocacionPaseadorNotFoundException("Locacion del paseador no encontrado"));
         // Obteniendo Locacion del PaseadorDTO a mantener los valores existentes sino se proporcionan en el DTO
-        Paseadores paseadores = locacionPaseadorExistente.getPaseadores();
-        if (locacionPaseadorDTO.getPaseadoresId() != null){
-            paseadores = paseadoresRepository.findById(locacionPaseadorDTO.getPaseadoresId())
-                    .orElseThrow(()->new PaseadorNotFounException("Id del paseador no encontrado"));
+        User user = locacionPaseadorExistente.getUser();
+        if (locacionPaseadorDTO.getUsuarioId() != null){
+            user = userRepository.findById(locacionPaseadorDTO.getUsuarioId())
+                    .orElseThrow(()->new UserNotFoundException("Id del paseador no encontrado"));
         }
         // Actualizar los datos de la locacion del pasador con los valores del DTO
         locacionPaseadorExistente.setLatitud(locacionPaseadorDTO.getLatitud());
         locacionPaseadorExistente.setLongitud(locacionPaseadorDTO.getLongitud());
-        locacionPaseadorExistente.setPaseadores(paseadores);
+        locacionPaseadorExistente.setUser(user);
         // Actualizando los cambios en la base de datos usando el repositorio
         locacionPaseadorExistente = locacionPaseadorRepository.save(locacionPaseadorExistente);
         return new LocacionPaseadorDTO(locacionPaseadorExistente);

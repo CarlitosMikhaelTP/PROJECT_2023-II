@@ -40,7 +40,7 @@ public class Transacciones {
     @JoinColumn(name = "id_estado_transaccion")
     private EstadoTransaccion estadoTransaccion;
 
-    @Column(name = "monto", nullable = false)
+    @Column(name = "monto", nullable = false) // decimales
     private Integer monto;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")//Despues agregar opcion para que no sea nulo

@@ -28,10 +28,10 @@ public class LocacionPaseador {
     @JoinColumn(name = "id", nullable = false)
     private User user;
 
-    @Column(name ="latitud")
+    @Column(name ="latitud", precision = 38, scale = 7)
     private BigDecimal latitud;
 
-    @Column(name = "longitud")
+    @Column(name = "longitud", precision = 38, scale = 7)
     private BigDecimal longitud;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")//Despues agregar opcion para que no sea nulo
@@ -49,6 +49,19 @@ public class LocacionPaseador {
     @Column(name = "updated_by")
     private Integer updatedBy;
 
-
+    @Override
+    public String toString() {
+        return "LocacionPaseador{" +
+                "id_locacion_paseador=" + id_locacion_paseador +
+                ", user=" + user +
+                ", latitud=" + latitud +
+                ", longitud=" + longitud +
+                ", estado=" + estado +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", createdBy=" + createdBy +
+                ", updatedBy=" + updatedBy +
+                '}';
+    }
 }
 

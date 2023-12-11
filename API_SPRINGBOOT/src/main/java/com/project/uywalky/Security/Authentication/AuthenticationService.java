@@ -125,6 +125,7 @@ public class AuthenticationService {
             repository.save(user);
             // Devolver nuevo token
             return jwtToken;
+
         }
         // Guardando cambios en la base de datos
         repository.save(user);
@@ -141,7 +142,5 @@ public class AuthenticationService {
         // Eliminando el usuario de la base de datos
         repository.delete(user);
     }
-
-    //Creación de servicio para buscar usuarios por numero de id
 
 }

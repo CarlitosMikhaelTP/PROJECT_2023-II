@@ -16,32 +16,32 @@ class Index_Dueno extends React.Component{
         return(
             <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
-  <a className="navbar-brand" href="#">Mi Sitio</a>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
-  <div className="collapse navbar-collapse" id="navbarNav">
-    <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
-        <Link to="/usertypeselection" className="nav-link" href="#">Registrarme</Link>
-      </li>
-      <li className="nav-item">
-        <Link to="/login" className="nav-link" >Iniciar Sesión</Link>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">Quiénes Somos</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">Registrar Datos para Propietario</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">Registrar Mascota</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">Buscar Paseador</a>
-      </li>
-    </ul>
-  </div>
+                  <a className="navbar-brand" href="#">Mi Sitio</a>
+                  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav ml-auto">
+                      <li className="nav-item">
+                        <Link to="/usertypeselection" className="nav-link" href="#">Registrarme</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/login" className="nav-link" >Iniciar Sesión</Link>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">Quiénes Somos</a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">Registrar Mascota</a>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/configurar-propietario" className="nav-link" href="#">Registrar como paseador</Link>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">Buscar Paseador</a>
+                      </li>
+                    </ul>
+                  </div>
 </nav>
 </React.Fragment>
     );

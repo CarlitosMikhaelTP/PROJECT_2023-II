@@ -25,7 +25,7 @@ public class Mascotas {
     private Integer id_mascota;
 
     @ManyToOne
-    @JoinColumn(name = "Id_tipo_mascota")
+    @JoinColumn(name = "id_tipo_mascota")
     private TipoMascota tipoMascota;
 
     @Column(name = "nombre", nullable = false, length = 20)

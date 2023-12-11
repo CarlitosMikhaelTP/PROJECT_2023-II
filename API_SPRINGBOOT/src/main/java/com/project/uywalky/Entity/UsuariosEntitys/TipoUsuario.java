@@ -1,6 +1,5 @@
 package com.project.uywalky.Entity.UsuariosEntitys;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,7 +26,8 @@ public class TipoUsuario {
 
     @Column(name = "nombre_tipo_usuario", nullable = false, length = 20, unique = true)
     private String nombreTipoUsuario;
-
+    // @Column(columnDefinition = "TEXT")
+    // private String descripcion;
     @Column(name = "descripcion", nullable = false, length = 255)
     private String descripcion;
 

@@ -1,0 +1,12 @@
+.logo-img {
+    max-width: 70px; /* Define el ancho máximo deseado para la imagen */
+    height: auto; /* Esto mantiene la proporción de la imagen */
+  }
+  
+
+ 
+  .carousel-img {
+    width: 50%; /* Cambia el valor para ajustar el tamaño */
+    height: auto; /* Altura automática proporcional al ancho */
+  }
+

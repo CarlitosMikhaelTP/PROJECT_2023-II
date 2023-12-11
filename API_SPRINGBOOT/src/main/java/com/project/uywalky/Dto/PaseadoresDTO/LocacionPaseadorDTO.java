@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class LocacionPaseadorDTO {
     @JsonProperty("id_locacion_paseador")
     private int id;
-    private Integer paseadoresId;// Id del paseador
+    private Integer usuarioId;
     private BigDecimal latitud;
     private BigDecimal longitud;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -32,7 +32,7 @@ public class LocacionPaseadorDTO {
 
     public LocacionPaseadorDTO(LocacionPaseador locacionPaseador){
         this.id = locacionPaseador.getId_locacion_paseador();
-        this.paseadoresId = locacionPaseador.getPaseadores().getId_paseador();
+        this.usuarioId = locacionPaseador.getUser().getId();
         this.latitud = locacionPaseador.getLatitud();
         this.longitud = locacionPaseador.getLongitud();
     }

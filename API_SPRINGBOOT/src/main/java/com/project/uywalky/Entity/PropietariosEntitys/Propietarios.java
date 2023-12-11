@@ -6,7 +6,6 @@ import com.project.uywalky.Entity.MascotasEntitys.MascotasPropietarios;
 import com.project.uywalky.Entity.PaseosEntitys.Calificaciones;
 import com.project.uywalky.Entity.PaseosEntitys.Comentarios;
 import com.project.uywalky.Entity.PaseosEntitys.Reservas;
-import com.project.uywalky.Entity.PaseosEntitys.Ubicaciones;
 import com.project.uywalky.Entity.TransaccionesEntitys.Transacciones;
 import com.project.uywalky.Entity.UsuariosEntitys.User;
 import jakarta.persistence.*;
@@ -45,13 +44,14 @@ public class Propietarios {
     @Column(name = "proferencias_paseo")
     private String preferencias_paseo;
 
-    @Column(name = "saldo")
+    /// AQIU ME QUEDE
+    @Column(name = "saldo", nullable = false)
     private Integer saldo;
 
     @Column(name = "disponibilidad")
     private Integer disponibilidad;
 
-    @Column(name = "ubicacion")
+    @Column(name = "ubicacion") // cambiar a
     private Integer ubicacion;
 
     @Column(name = "foto", length = 3)
@@ -88,17 +88,11 @@ public class Propietarios {
     @OneToMany(mappedBy = "propietarios", cascade = CascadeType.ALL)
     private List<Calificaciones> calificaciones;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "propietarios")
-    private Ubicaciones ubicaciones;
 
     @JsonIgnore
     @OneToMany(mappedBy = "propietarios")
     private List<Reservas> reservas;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "propietarios")
-    private LocacionPropietario locacionPropietario;
 
     @Override
     public String toString() {

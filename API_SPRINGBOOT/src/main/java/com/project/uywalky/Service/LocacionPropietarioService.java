@@ -3,11 +3,14 @@ package com.project.uywalky.Service;
 import com.project.uywalky.Entity.PropietariosEntitys.LocacionPropietario;
 import com.project.uywalky.Entity.PropietariosEntitys.Propietarios;
 import com.project.uywalky.Dto.PropietariosDTO.LocacionPropietarioDTO;
+import com.project.uywalky.Entity.UsuariosEntitys.User;
 import com.project.uywalky.Exceptions.Exist.LocacionPropietarioExistenteException;
 import com.project.uywalky.Exceptions.NotFound.LocacionPropietarioNotFoundException;
 import com.project.uywalky.Exceptions.NotFound.PropietariosNotFoundException;
+import com.project.uywalky.Exceptions.NotFound.UserNotFoundException;
 import com.project.uywalky.Repository.PropietariosRepo.LocacionPropietarioRepository;
 import com.project.uywalky.Repository.PropietariosRepo.PropietariosRepository;
+import com.project.uywalky.Repository.UsuariosRepo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +21,18 @@ import java.util.List;
 public class LocacionPropietarioService {
 
     private final LocacionPropietarioRepository locacionPropietarioRepository;
-    private final PropietariosRepository propietariosRepository;
+    private final UserRepository userRepository;
 
     // Creación de servicio para registrar nuevas locaciones para el propietario
     public LocacionPropietarioDTO registrarLocacionPropietario(LocacionPropietarioDTO locacionPropietarioDTO){
-        Propietarios propietarios = propietariosRepository.findById(locacionPropietarioDTO.getPropietariosId())
+        User user = userRepository.findById(locacionPropietarioDTO.getUsuarioId())
                 .orElseThrow(()-> new PropietariosNotFoundException("Id del propietario no encontrado"));
-        if (locacionPropietarioRepository.existsByPropietarios(propietarios)){
-            throw new LocacionPropietarioExistenteException("Esta locación ya tiene un id de propietario");
+        if (locacionPropietarioRepository.existsByUser(user)){
+            throw new LocacionPropietarioExistenteException("Esta locación ya tiene un id de usuario");
         }
         // Implementar las validaciones necesarias
         LocacionPropietario locacionPropietario = LocacionPropietario.builder()
-                .propietarios(propietarios) // id del paseador
+                .user(user) // id del paseador
                 .latitud(locacionPropietarioDTO.getLatitud())
                 .longitud(locacionPropietarioDTO.getLongitud())
                 .build();
@@ -65,15 +68,15 @@ public class LocacionPropietarioService {
         LocacionPropietario locacionPropietarioExistente = locacionPropietarioRepository.findById(id_locacion_propietario)
                 .orElseThrow(()-> new LocacionPropietarioNotFoundException("Locacion del propietario no encontrado"));
         // Obteniendo Locacion del PropietarioDTO a mantener los valores existentes sino se proporcionan en el DTO
-        Propietarios propietarios = locacionPropietarioExistente.getPropietarios();
-        if (locacionPropietarioDTO.getPropietariosId() != null){
-            propietarios = propietariosRepository.findById(locacionPropietarioDTO.getPropietariosId())
-                    .orElseThrow(()->new PropietariosNotFoundException("Id del propietario no encontrado"));
+        User user = locacionPropietarioExistente.getUser();
+        if (locacionPropietarioDTO.getUsuarioId() != null){
+            user = userRepository.findById(locacionPropietarioDTO.getUsuarioId())
+                    .orElseThrow(()->new UserNotFoundException("Id del propietario no encontrado"));
         }
         // Actualizando los cambios del propietario con los valores del DTO
         locacionPropietarioExistente.setLatitud(locacionPropietarioDTO.getLatitud());
         locacionPropietarioExistente.setLongitud(locacionPropietarioDTO.getLongitud());
-        locacionPropietarioExistente.setPropietarios(propietarios);
+        locacionPropietarioExistente.setUser(user);
 
         // Actualizando los cambios en la base de datos usando el repositorio
         locacionPropietarioExistente = locacionPropietarioRepository.save(locacionPropietarioExistente);

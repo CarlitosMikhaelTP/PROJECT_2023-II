@@ -41,4 +41,17 @@ public class UserController {
         }
     }
 
+    // ENDPOINT PARA ELIMINAR UN USUARIO POR SU ID
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteUserById(@PathVariable("userId") Integer userId) {
+        // Llamada al servicio para eliminar el usuario
+        boolean deleted = userService.deleteUserById(userId);
+
+        if (deleted) {
+            return ResponseEntity.ok("Usuario eliminado exitosamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se pudo encontrar el usuario para eliminar");
+        }
+    }
+
 }

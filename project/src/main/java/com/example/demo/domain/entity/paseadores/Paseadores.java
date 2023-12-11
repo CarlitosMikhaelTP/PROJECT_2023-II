@@ -55,10 +55,6 @@ public class Paseadores {
     @Column(name = "disponibilidad", nullable = false)
     private Boolean disponibilidad;
 
-    @Lob
-    @Column(name = "foto", nullable = false)
-    private byte[] foto;
-
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")
     private Short estado;
 

@@ -32,27 +32,24 @@ public class PaseadorController {
     // Inicializamos las clases para trabajar con este constructor con "final"
     private final PaseadorService paseadorService;
 
-    // Creacón de los ENDPOINTS
-    // ENDPOINT PARA REGISTRAR NUEVOS PASEADORES
+    // Endpoint para registrar Paseadores
     @PostMapping("/register")
-    public ResponseEntity<PaseadoresDTO> registrarPaseador(
-            @RequestBody PaseadoresDTO paseadoresDTO,
-            @RequestParam(value = "foto", required = false) MultipartFile foto
-    ) {
-        try {
-            PaseadoresDTO nuevoPaseador = paseadorService.registrarPaseadores(paseadoresDTO, foto);
-            return new ResponseEntity<>(nuevoPaseador, HttpStatus.CREATED);
-        } catch (UserNotFoundException | CategoriaNotFoundException | PaseadorExistenteException e) {
-            // Manejar excepciones específicas
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } catch (FileProcessingException e) {
-            // Manejar excepción relacionada con el procesamiento del archivo
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<PaseadoresDTO> registrarPaseador(@RequestBody PaseadoresDTO paseadoresDTO){
+        PaseadoresDTO paseadorRegistrado = paseadorService.registrarPaseador(paseadoresDTO);
+        return ResponseEntity.ok(paseadorRegistrado);
     }
 
-
-
-    // ENDPOINT PARA MOSTRAR UN REGISTRO DE PASEADOR
-
+    // Endpoint para editar Paseadores
+    @PutMapping("/{id}")
+    public ResponseEntity<PaseadoresDTO> editarPaseador(
+            @PathVariable("id") Integer id,
+            @RequestBody PaseadoresDTO paseadoresDTO
+    ) {
+        PaseadoresDTO paseadorActualizado = paseadorService.editarPaseador(id, paseadoresDTO);
+        return ResponseEntity.ok(paseadorActualizado);
+    }
 }
+
+    // Creacón de los ENDPOINTS
+    // ENDPOINT PARA REGISTRAR NUEVOS PASEADORES
+

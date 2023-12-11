@@ -37,10 +37,6 @@ public class Mascotas {
     @Column(name = "edad", nullable = false, length = 20)
     private String edad;
 
-    @Lob
-    @Column(name = "foto", nullable = false)
-    private byte[] foto;
-
     @Column(name = "necesidades", columnDefinition = "TEXT", nullable = false)
     private String necesidades;
 

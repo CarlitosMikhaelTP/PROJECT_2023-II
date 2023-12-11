@@ -90,10 +90,6 @@ public class Paseadores {
     @OneToMany(mappedBy = "paseadores")
     private List<Reservas> reservas;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "paseadores")
-    private LocacionPaseador locacionPaseador;
-
 
     @Override
     public String toString() {

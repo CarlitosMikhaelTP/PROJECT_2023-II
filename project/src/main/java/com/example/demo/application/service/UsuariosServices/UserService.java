@@ -17,4 +17,8 @@ public interface UserService {
     // Implementación para editar un usuario registrado por medio de su ID
     String ediUserDetails(Integer id, UserDTO request);
 
+    // Implementación para eliminar un usuario por su ID
+    boolean deleteUserById(Integer id);
+
+
 }

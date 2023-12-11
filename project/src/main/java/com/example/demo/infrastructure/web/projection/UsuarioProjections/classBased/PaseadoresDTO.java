@@ -20,13 +20,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class PaseadoresDTO {
 
-
-    private Integer idPaseador;
-
+    // Definiendo los campos para el registro del paseador
     @NotNull(message = "El id de usuario no puede ser nula")
     @NotBlank(message = "El id del usuario no puede estar vacía")
     private Integer idUsuario;
 
+    // Definiendo los campos para la edición del paseador y su edición
     @NotNull(message = "El id de la categoría no puede ser nula")
     @NotBlank(message = "El id de la categoría no puede estar vacía")
     private Integer idCategoria;
@@ -63,38 +62,6 @@ public class PaseadoresDTO {
     @NotNull(message = "La disponibilidad no puede ser nula")
     @NotBlank(message = "La disponibilidad no puede estar vacía")
     private Boolean disponibilidad;
-
-
-    @JsonProperty("foto")
-    @NotNull(message = "La foto no es opcional, se requiere si o si.")
-    @NotBlank(message = "La foto no puede estar vacía")
-    private byte[] fotoBytes;
-
-    // Constructor para que acepte el objeto "Paseadores"
-    public PaseadoresDTO(Paseadores paseadores, MultipartFile foto){
-        this.idPaseador = paseadores.getIdPaseador();
-        this.idUsuario = paseadores.getUser().getId();
-        this.idCategoria = paseadores.getCategorias().getIdCategoria();
-        this.calificacion = paseadores.getCalificacion();
-        this.descripcion = paseadores.getDescripcion();
-        this.experiencia = paseadores.getExperiencia();
-        this.ubicacion = paseadores.getUbicacion();
-        this.tarifa = paseadores.getTarifa();
-        this.saldo = paseadores.getSaldo();
-        this.disponibilidad = paseadores.getDisponibilidad();
-        try {
-            if (foto != null && !foto.isEmpty()) {
-                this.fotoBytes = foto.getBytes(); // Obtener los bytes de la imagen si está presente
-            }
-        } catch (IOException e) {
-            // Manejar la excepción si ocurre algún error al obtener los bytes de la foto
-            // Puedes lanzar una excepción personalizada o manejarla según tu lógica
-            // Ejemplo:
-            throw new FileProcessingException("Error al procesar la foto del paseador");
-        }
-    }
-
-
 
 
 }

@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
         if (request.getEmail() != null) {
             user.setEmail(request.getEmail());
         }
+
         // Si la contraseña se actualiza, codifícala y genera un nuevo token
         if (request.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -72,12 +73,23 @@ public class UserServiceImpl implements UserService {
             // Guardando cambios en la base de datos
             userRepository.save(user);
             // Devolver nuevo token
-            return jwtToken;
+            return "Usuario actualizado con éxito\nId del usuario actualizado: " + user.getId() + "\nNuevo token: " + jwtToken;
         }
-
         userRepository.save(user);
         return null;
     }
+
+    // Servicio para eliminar un usuario por su ID
+    @Override
+    public boolean deleteUserById(Integer id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+
+        userRepository.delete(user);
+        System.out.println("Se eliminó al usuario con ID: "+ id);
+        return true;
+    }
+
 }
 
 

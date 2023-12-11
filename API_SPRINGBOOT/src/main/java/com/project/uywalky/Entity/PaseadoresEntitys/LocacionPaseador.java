@@ -1,5 +1,6 @@
 package com.project.uywalky.Entity.PaseadoresEntitys;
 
+import com.project.uywalky.Entity.UsuariosEntitys.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +25,8 @@ public class LocacionPaseador {
 
     // Id del paseador
     @OneToOne
-    @JoinColumn(name = "id_paseador", nullable = false)
-    private Paseadores paseadores;
+    @JoinColumn(name = "id", nullable = false)
+    private User user;
 
     @Column(name ="latitud")
     private BigDecimal latitud;
@@ -48,19 +49,6 @@ public class LocacionPaseador {
     @Column(name = "updated_by")
     private Integer updatedBy;
 
-    @Override
-    public String toString() {
-        return "LocacionPaseador{" +
-                "id_locacion_paseador=" + id_locacion_paseador +
-                ", paseadores=" + paseadores +
-                ", latitud=" + latitud +
-                ", longitud=" + longitud +
-                ", estado=" + estado +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", createdBy=" + createdBy +
-                ", updatedBy=" + updatedBy +
-                '}';
-    }
+
 }
 

@@ -36,17 +36,7 @@ public class PaseadoresDTO {
     private Integer updatedBy;
 
     public PaseadoresDTO(Paseadores paseadores){
-        this.id = paseadores.getId_paseador();
         this.userId = paseadores.getUser().getId();
-        this.id_categoria = paseadores.getCategorias().getId_categoria();
-        this.calificacion = paseadores.getCalificacion();
-        this.descripcion = paseadores.getDescripcion();
-        this.experiencia = paseadores.getExperiencia();
-        this.ubicacion = paseadores.getUbicacion();
-        this.tarifa = paseadores.getTarifa();
-        this.saldo = paseadores.getSaldo();
-        this.disponibilidad = paseadores.getDisponibilidad();
-        this.foto = paseadores.getFoto();
     }
 
 }

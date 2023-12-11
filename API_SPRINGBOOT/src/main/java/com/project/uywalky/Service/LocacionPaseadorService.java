@@ -3,11 +3,13 @@ package com.project.uywalky.Service;
 import com.project.uywalky.Entity.PaseadoresEntitys.LocacionPaseador;
 import com.project.uywalky.Entity.PaseadoresEntitys.Paseadores;
 import com.project.uywalky.Dto.PaseadoresDTO.LocacionPaseadorDTO;
+import com.project.uywalky.Entity.UsuariosEntitys.User;
 import com.project.uywalky.Exceptions.Exist.LocacionPaseadorExistenteException;
 import com.project.uywalky.Exceptions.NotFound.LocacionPaseadorNotFoundException;
 import com.project.uywalky.Exceptions.NotFound.PaseadorNotFounException;
 import com.project.uywalky.Repository.PaseadoresRepo.LocacionPaseadorRepository;
 import com.project.uywalky.Repository.PaseadoresRepo.PaseadoresRepository;
+import com.project.uywalky.Repository.UsuariosRepo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +20,18 @@ import java.util.List;
 public class LocacionPaseadorService {
 
     private final LocacionPaseadorRepository locacionPaseadorRepository;
-    private final PaseadoresRepository paseadoresRepository;
+    private final UserRepository userRepository;
 
     // Creación de servicio para registrar nuevas locaciones para el paseador
     public LocacionPaseadorDTO registrarLocacionPaseador(LocacionPaseadorDTO locacionPaseadorDTO){
-        Paseadores paseadores = paseadoresRepository.findById(locacionPaseadorDTO.getPaseadoresId())
+        User user = UserRepository.findById(locacionPaseadorDTO.getPaseadoresId())
                 .orElseThrow(()-> new PaseadorNotFounException("Id del paseador no encontrado"));
         if (locacionPaseadorRepository.existsByPaseadores(paseadores)){
             throw new LocacionPaseadorExistenteException("Esta locación ya tiene un id de paseador");
         }
         // Implementar las validaciones necesarias
         LocacionPaseador locacionPaseador = LocacionPaseador.builder()
-                .paseadores(paseadores) // id del paseador
+                .user(user) // id del paseador
                 .latitud(locacionPaseadorDTO.getLatitud())
                 .longitud(locacionPaseadorDTO.getLongitud())
                 .build();

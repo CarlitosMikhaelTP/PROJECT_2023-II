@@ -49,6 +49,7 @@ public class AuthenticationService {
         var jwtToken = projectService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .id(user.getId())
                 .build();
     }
 

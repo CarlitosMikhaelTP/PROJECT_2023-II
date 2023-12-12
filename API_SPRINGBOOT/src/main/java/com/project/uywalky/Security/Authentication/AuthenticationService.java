@@ -124,6 +124,7 @@ public class AuthenticationService {
             repository.save(user);
             // Devolver nuevo token
             return jwtToken;
+
         }
         // Guardando cambios en la base de datos
         repository.save(user);

@@ -17,7 +17,7 @@ public class LocacionPropietarioDTO {
 
     @JsonProperty("id_locacion_propietario")
     private int id;
-    private Integer propietariosId;
+    private Integer usuarioId;
     private BigDecimal latitud;
     private BigDecimal longitud;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -33,7 +33,7 @@ public class LocacionPropietarioDTO {
 
     public LocacionPropietarioDTO(LocacionPropietario locacionPropietario){
         this.id = locacionPropietario.getId_locacion_propietario();
-        this.propietariosId = locacionPropietario.getPropietarios().getId_propietario();
+        this.usuarioId = locacionPropietario.getUser().getId();
         this.latitud = locacionPropietario.getLatitud();
         this.longitud = locacionPropietario.getLongitud();
     }

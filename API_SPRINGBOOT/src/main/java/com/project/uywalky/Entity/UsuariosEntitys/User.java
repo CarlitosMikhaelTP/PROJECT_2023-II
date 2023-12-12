@@ -1,7 +1,9 @@
 package com.project.uywalky.Entity.UsuariosEntitys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.uywalky.Entity.PaseadoresEntitys.LocacionPaseador;
 import com.project.uywalky.Entity.PaseadoresEntitys.Paseadores;
+import com.project.uywalky.Entity.PropietariosEntitys.LocacionPropietario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -92,7 +94,13 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Paseadores paseadores;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "user")
+    private LocacionPaseador locacionPaseador;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "user")
+    private LocacionPropietario locacionPropietario;
     //////////////////////// ENTENDERLO MEJOR DESPUES //////////////////////////////
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

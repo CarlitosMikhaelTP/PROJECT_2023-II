@@ -1,5 +1,6 @@
 package com.project.uywalky.Entity.PropietariosEntitys;
 
+import com.project.uywalky.Entity.UsuariosEntitys.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,13 +25,13 @@ public class LocacionPropietario {
     private Integer id_locacion_propietario;
 
     @OneToOne
-    @JoinColumn(name = "id_propietario", nullable = false)
-    private Propietarios propietarios;
+    @JoinColumn(name = "id", nullable = false)
+    private User user;
 
-    @Column(name ="latitud")
+    @Column(name ="latitud", precision = 38, scale = 7)
     private BigDecimal latitud;
 
-    @Column(name = "longitud")
+    @Column(name = "longitud", precision = 38, scale = 7)
     private BigDecimal longitud;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")//Despues agregar opcion para que no sea nulo
@@ -52,7 +53,7 @@ public class LocacionPropietario {
     public String toString() {
         return "LocacionPropietario{" +
                 "id_locacion_propietario=" + id_locacion_propietario +
-                ", propietarios=" + propietarios +
+                ", user=" + user +
                 ", latitud=" + latitud +
                 ", longitud=" + longitud +
                 ", estado=" + estado +

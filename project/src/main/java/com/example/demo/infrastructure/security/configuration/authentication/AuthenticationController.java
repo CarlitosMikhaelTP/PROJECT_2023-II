@@ -2,8 +2,8 @@ package com.example.demo.infrastructure.security.configuration.authentication;
 
 import com.example.demo.application.exceptions.UsuariosExceptions.NotFound.TipoUsuarioNotFoundException;
 import com.example.demo.application.service.UsuariosServices.TiposUsuarioService;
-import com.example.demo.domain.entity.usuariosEntitys.TiposUsuario;
-import com.example.demo.domain.repository.UsuariosRepos.TipoUsuarioRepository;
+import com.example.demo.domain.entity.usuarios.TiposUsuario;
+import com.example.demo.domain.repository.Usuarios.TipoUsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

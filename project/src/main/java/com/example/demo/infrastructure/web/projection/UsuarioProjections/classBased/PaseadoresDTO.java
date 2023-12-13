@@ -63,5 +63,10 @@ public class PaseadoresDTO {
     @NotBlank(message = "La disponibilidad no puede estar vacía")
     private Boolean disponibilidad;
 
+    // Campos adicionales para enviar respuesta
+    private Integer IdTipoUsuario;
+    private Integer IdPaseador;
+    private String nombres;
+
 
 }

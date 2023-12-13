@@ -3,6 +3,7 @@ package com.example.demo.domain.entity.propietarios;
 import com.example.demo.domain.entity.usuarios.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "Locacion_Propietario")
 public class LocacionPropietario {
 

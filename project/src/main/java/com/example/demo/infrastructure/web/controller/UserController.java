@@ -42,7 +42,7 @@ public class UserController {
     }
 
     // ENDPOINT PARA ELIMINAR UN USUARIO POR SU ID
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete/{userId}")
     public ResponseEntity<String> deleteUserById(@PathVariable("userId") Integer userId) {
         // Llamada al servicio para eliminar el usuario
         boolean deleted = userService.deleteUserById(userId);

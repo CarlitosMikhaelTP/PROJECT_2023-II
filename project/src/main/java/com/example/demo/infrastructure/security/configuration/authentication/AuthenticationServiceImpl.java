@@ -43,8 +43,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         repository.save(user);
         var jwtToken = projectService.generateToken(user);
 
+
+        Integer tipoUsuarioId = tiposUsuario.getIdTipoUsuario();
+        Integer idUsuario = user.getId();
+        String nombres = user.getNombres();
+        String apellidos = user.getApellidos();
+
+
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .IdTipoUsuario(tipoUsuarioId)
+                .Id(idUsuario)
+                .nombres(nombres)
+                .apellidos(apellidos)
                 .build();
     }
 
@@ -64,10 +76,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         TiposUsuario tiposUsuario = user.getTiposUsuario();
         Integer tipoUsuarioId = tiposUsuario.getIdTipoUsuario();
+        Integer idUsuario = user.getId();
+        String nombres = user.getNombres();
+        String apellidos = user.getApellidos();
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .IdTipoUsuario(tipoUsuarioId)
+                .Id(idUsuario)
+                .nombres(nombres)
+                .apellidos(apellidos)
                 .build();
     }
 }

@@ -1,5 +1,4 @@
 use project2023;
--- Tomar en consideración la eliminación del campo foto -----
 -- Realizando inserciones a tipo de usuario ---
 INSERT INTO Tipos_Usuario (nombre_tipo_usuario, descripcion)
 VALUES 
@@ -17,9 +16,20 @@ VALUES
     (2, 'Pedro', 'López', 'pedrito', 'Calle Secundaria 789', 28, '456123789', '56781234', 'pedro@example.com', 'password789'),
     (1, 'Laura', 'Martínez', 'lau', 'Boulevard Principal 321', 35, '789456123', '43218765', 'laura@example.com', 'passwordabc');
 select * from usuarios;
+select * from paseadores;
+select * from Tipos_usuario;
+ALTER TABLE Propietarios
+DROP COLUMN foto;
+describe propietarios;
+select * from paseadores;
+select * from propietarios;
 select * from categorias;
+select * from locacion_paseador;
+select * from locacion_propietario;
 describe paseadores;
+select * from categorias;
 describe  usuarios;
+describe locacion_paseador;
 -- Realizando inserciones a la tabla de Categorias de paseadores de perros ---
 INSERT INTO Categorias (categoria_nombre, descripcion)
 VALUES 
@@ -165,3 +175,4 @@ describe locacion_propietario;
 describe paseos;
 ALTER TABLE Paseos
 MODIFY costo DECIMAL(10, 2) NOT NULL;
+

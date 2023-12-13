@@ -1,11 +1,12 @@
 package com.example.demo.domain.entity.propietarios;
 
-import com.example.demo.domain.entity.mascotas.MascotasPropietarios;
+import com.example.demo.domain.entity.mascotas.Mascotas;
 import com.example.demo.domain.entity.paseos.Reservas;
 import com.example.demo.domain.entity.transacciones.Transacciones;
 import com.example.demo.domain.entity.usuarios.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 import java.util.List;
 @Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Entity
 @Table(name = "Propietarios")
@@ -46,10 +48,6 @@ public class Propietarios {
     @Column(name = "ubicacion", length = 20, nullable = false)
     private String ubicacion;
 
-    @Lob
-    @Column(name = "foto", nullable = false)
-    private byte[] foto;
-
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")
     private Short estado;
 
@@ -72,7 +70,7 @@ public class Propietarios {
     private List<Transacciones> transacciones;
 
     @OneToMany(mappedBy = "propietarios", cascade = CascadeType.ALL)
-    private List<MascotasPropietarios> mascotasPropietarios;
+    private List<Mascotas> mascotas;
 
     @OneToMany(mappedBy = "propietarios", cascade = CascadeType.ALL)
     private List<Reservas> reservas;

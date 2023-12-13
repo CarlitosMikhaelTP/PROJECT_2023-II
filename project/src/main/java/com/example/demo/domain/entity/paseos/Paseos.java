@@ -3,6 +3,7 @@ package com.example.demo.domain.entity.paseos;
 import com.example.demo.domain.entity.usuarios.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "Paseos")
 public class Paseos {
 

@@ -59,8 +59,11 @@ public class AuthenticationService {
         user = repository.loadTipoUsuario(user.getId());
         var jwtToken = projectService.generateToken(user);
 
-        TipoUsuario tipoUsuario = user.getTipoUsuario();
-        Integer tipoUsuarioId = tipoUsuario.getIdTipoUsuario();
+        TipoUsuario tiposUsuario = user.getTipoUsuario();
+        Integer tipoUsuarioId = tiposUsuario.getIdTipoUsuario();
+        Integer idUsuario = user.getId();
+        String nombres = user.getNombres();
+        String apellidos = user.getApellidos();
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -72,6 +75,9 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .IdTipoUsuario(tipoUsuarioId)
+                .Id(idUsuario)
+                .nombres(nombres)
+                .apellidos(apellidos)
                 .build();
     }
 

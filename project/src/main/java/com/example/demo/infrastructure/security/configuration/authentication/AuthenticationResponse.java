@@ -15,5 +15,8 @@ public class AuthenticationResponse {
     // Funciona como una DTO
 
     private String token;
-    private Integer IdTipoUsuario; // Agregando el campo tipo de Usuario
+    private Integer IdTipoUsuario;// Agregando el campo tipo de Usuario
+    private  Integer Id;
+    private String nombres;
+    private String apellidos;
 }

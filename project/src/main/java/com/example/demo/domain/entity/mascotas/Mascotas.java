@@ -1,8 +1,10 @@
 package com.example.demo.domain.entity.mascotas;
 
+import com.example.demo.domain.entity.propietarios.Propietarios;
 import com.example.demo.domain.entity.usuarios.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Entity
 @Table(name = "Mascotas")
@@ -24,6 +27,10 @@ public class Mascotas {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_mascota", nullable = false)
     private TiposMascota tiposMascota;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_propietario", nullable = false)
+    private Propietarios propietarios;
 
     @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
@@ -57,9 +64,6 @@ public class Mascotas {
     @JoinColumn(name = "updated_by", referencedColumnName = "id")
     private User updatedBy;
 
-    ////////////// MAPEO DE CARDINALIDAD /////////////////////////
 
-    @OneToMany(mappedBy = "mascotas", cascade = CascadeType.ALL)
-    private List<MascotasPropietarios> mascotasPropietarios;
 
 }

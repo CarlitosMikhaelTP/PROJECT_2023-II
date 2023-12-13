@@ -5,6 +5,7 @@ import com.example.demo.domain.entity.propietarios.Propietarios;
 import com.example.demo.domain.entity.usuarios.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Entity
 @Table(name = "Reservas")
@@ -45,10 +47,10 @@ public class Reservas {
     private String detalles;
 
     @Column(name = "punto_encuentro", nullable = false, length = 25)
-    private String punto_encuentro;
+    private String puntoEncuentro;
 
     @Column(name = "lugar_paseo", nullable = false, length = 20)
-    private String lugar_paseo;
+    private String lugarPaseo;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")
     private Short estado;

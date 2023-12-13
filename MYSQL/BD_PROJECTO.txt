@@ -99,6 +99,14 @@ CREATE TABLE Locacion_Paseador (
     FOREIGN KEY (created_by) REFERENCES Usuarios(id),
     FOREIGN KEY (updated_by) REFERENCES Usuarios(id)
 );
+describe locacion_paseador;
+ALTER TABLE Locacion_Paseador
+MODIFY latitud DECIMAL(38, 7),
+MODIFY longitud DECIMAL(38, 7);
+
+ALTER TABLE Locacion_Propietario
+MODIFY latitud DECIMAL(38, 7),
+MODIFY longitud DECIMAL(38, 7);
 
 -- Creacion de tabla de Tipo_Mascota TERMINADO  CHECK --
 CREATE TABLE Tipos_Mascota (
@@ -117,6 +125,7 @@ CREATE TABLE Tipos_Mascota (
 CREATE TABLE Mascotas (
     id_mascota INT AUTO_INCREMENT PRIMARY KEY,
     id_tipo_mascota INT NOT NULL,
+    id_propietario INT NOT NULL,
     nombre VARCHAR(20) NOT NULL,
     raza VARCHAR(20) NOT NULL,
     peso VARCHAR(20) NOT NULL,
@@ -128,25 +137,19 @@ CREATE TABLE Mascotas (
     created_by INT,
     updated_by INT,
     FOREIGN KEY (id_tipo_mascota) REFERENCES Tipos_Mascota(id_tipo_mascota) ON DELETE CASCADE,
-    FOREIGN KEY (created_by) REFERENCES Usuarios(id),
-    FOREIGN KEY (updated_by) REFERENCES Usuarios(id)
-);
-ALTER TABLE Mascotas DROP COLUMN foto;
--- Creacion de tabla normalizadora Mascotas_Propietario TERMINADO CHECK --
-CREATE TABLE Mascotas_Propietarios (
-    id_mascota_propietario INT AUTO_INCREMENT PRIMARY KEY,
-    id_propietario INT NOT NULL,
-    id_mascota INT NOT NULL,
-    estado TINYINT UNSIGNED DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_by INT,
-    updated_by INT,
     FOREIGN KEY (id_propietario) REFERENCES Propietarios(id_propietario) ON DELETE CASCADE,
-    FOREIGN KEY (id_mascota) REFERENCES Mascotas(id_mascota) ON DELETE CASCADE,
     FOREIGN KEY (created_by) REFERENCES Usuarios(id),
     FOREIGN KEY (updated_by) REFERENCES Usuarios(id)
 );
+drop table Mascotas_propietarios;
+drop table Mascotas;
+
+select * from tipos_mascota; 
+ALTER TABLE Mascotas DROP COLUMN foto;
+commit;
+
+describe mascotas;
+describe propietarios;
 
 
 -- Creacion de tabla de Propietarios oficial TERMINADA CHECK --
@@ -300,9 +303,6 @@ CREATE TABLE CalificacionesComentarios (
 commit;
 
 show tables;
-
-
-
 
 
 

@@ -12,5 +12,8 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
 
     private String token;
-    private Integer IdTipoUsuario; // Agregando el campo tipo de Usuario
+    private Integer IdTipoUsuario;// Agregando el campo tipo de Usuario
+    private  Integer Id;
+    private String nombres;
+    private String apellidos;
 }

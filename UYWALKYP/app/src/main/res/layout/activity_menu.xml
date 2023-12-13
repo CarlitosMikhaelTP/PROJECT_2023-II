@@ -267,12 +267,13 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:tint="@color/orangepalid"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/baseline_person_2_24" />
+                                app:srcCompat="@drawable/baseline_person_2_24"
+                                app:tint="@color/mblue"
+                                />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -313,7 +314,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/baseline_map_24"
-                                android:tint="@color/orangepalid"/>
+                                app:tint="@color/mblue" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -341,18 +342,18 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_3" />
+                                app:srcCompat="@drawable/baseline_chat_24"
+                                android:tint="@color/mblue"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -380,18 +381,18 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_4" />
+                                app:srcCompat="@drawable/baseline_shower_24"
+                                app:tint="@color/mblue" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -399,7 +400,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Reports"
+                            android:text="Baños"
                             android:textAlignment="center"
                             android:textColor="#2e3d6d"
                             android:textSize="14sp"
@@ -425,18 +426,18 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_5" />
+                                app:srcCompat="@drawable/baseline_calendar_month_24"
+                                android:tint="@color/mblue"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -464,18 +465,18 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_6" />
+                                app:srcCompat="@drawable/baseline_payment_24"
+                                app:tint="@color/mblue" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -483,7 +484,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Tips"
+                            android:text="Pagos"
                             android:textAlignment="center"
                             android:textColor="#2e3d6d"
                             android:textSize="14sp"
@@ -503,18 +504,18 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_7" />
+                                app:srcCompat="@drawable/baseline_settings_suggest_24"
+                                app:tint="@color/mblue" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -522,7 +523,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Settings"
+                            android:text="Config"
                             android:textAlignment="center"
                             android:textColor="#2e3d6d"
                             android:textSize="14sp"
@@ -543,18 +544,18 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_8" />
+                                app:srcCompat="@drawable/baseline_person_outline_24"
+                                android:tint="@color/mblue"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -562,7 +563,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="More"
+                            android:text="Cerrar S"
                             android:textAlignment="center"
                             android:textColor="#2e3d6d"
                             android:textSize="14sp"

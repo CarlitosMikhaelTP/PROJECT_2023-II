@@ -65,15 +65,16 @@ class Login extends React.Component {
 
         return (
             <React.Fragment>
-                <div className="wrapper fadeInDown">
+                <div className="row" style={{ width: '100%' }}>
+                <div className="wrapper fadeInDown col-12">
                     <div id="formContent">
                         <div className="fadeIn first">
                             <img src={logo} id="icon" alt="User Icon" />
                         </div>
                         <form onSubmit={this.manejadorSubmit}>
-                            <input type="text" className="fadeIn second" name="email" placeholder="Email" onChange={this.manejadorChange} />
-                            <input type="password" className="fadeIn third" name="password" placeholder="Password" onChange={this.manejadorChange} />
-                            <input type="submit" className="fadeIn fourth" value="Log In" onClick={this.manejadorBoton} />
+                            <input type="text" className="fadeIn second" name="email" placeholder="Ingresa tu Email" onChange={this.manejadorChange} />
+                            <input type="password" className="fadeIn third" name="password" placeholder="Contraseña" onChange={this.manejadorChange} />
+                            <input type="submit" className="fadeIn fourth" value="ENTRAR" onClick={this.manejadorBoton} />
                         </form>
                         {this.state.error === true &&
                             <div className="alert alert-danger" role="alert">
@@ -81,6 +82,7 @@ class Login extends React.Component {
                             </div>
                         }
                     </div>
+                </div>
                 </div>
             </React.Fragment>
         );

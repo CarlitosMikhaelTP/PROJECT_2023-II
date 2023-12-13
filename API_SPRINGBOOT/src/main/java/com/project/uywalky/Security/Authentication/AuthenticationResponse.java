@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationResponse {
-
+    private Integer id;
     private String token;
     private Integer IdTipoUsuario;// Agregando el campo tipo de Usuario
     private  Integer Id;

@@ -45,6 +45,8 @@ public class CalificacionComentarioServiceImpl implements CalificacionComentario
                 .IdReserva(IdReserva)
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
+                .comentario(calificacionesComentariosDTO.getComentario())
+                .calificacion(calificacionesComentariosDTO.getCalificacion())
                 .build();
     }
 
@@ -76,6 +78,8 @@ public class CalificacionComentarioServiceImpl implements CalificacionComentario
                 .IdReserva(IdReserva)
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
+                .comentario(calificacionesComentariosDTO.getComentario())
+                .calificacion(calificacionesComentariosDTO.getCalificacion())
                 .build();
     }
 

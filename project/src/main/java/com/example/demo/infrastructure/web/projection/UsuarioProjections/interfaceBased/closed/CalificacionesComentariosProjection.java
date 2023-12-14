@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public interface CalificacionesComentariosProjection {
 
     // Se mostrará esta información al mostrar 1 ID o TODOS
-    Integer getIdCalificacionComentario();
+    Integer getIdCalificacioncomentario();
 
     @Value("#{target.Paseos.IdPaseo}")
     Integer getIdPaseo();

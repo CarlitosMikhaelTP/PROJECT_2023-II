@@ -57,16 +57,23 @@ public class MascotaServiceImpl implements MascotaService {
         // Personalizando respuesta
         Integer IdMascota = mascotas.getIdMascota();
         Integer IdTipoUsuario = mascotas.getPropietarios().getUser().getTiposUsuario().getIdTipoUsuario();
+        Integer IdUsuario = mascotas.getPropietarios().getUser().getId();
         Integer IdPropietario = mascotas.getPropietarios().getIdPropietario();
         String nombrePropietario = mascotas.getPropietarios().getUser().getNombres();
         String nombreMascota = mascotas.getNombre();
 
         return MascotaDTO.builder()
                 .IdMascota(IdMascota)
+                .idTipoMascota(IdMascota)
                 .nombre(nombreMascota)
                 .IdTipoUsuario(IdTipoUsuario)
                 .idPropietario(IdPropietario)
+                .IdUsuario(IdUsuario)
                 .PropietarioNombres(nombrePropietario)
+                .raza(mascotaDTO.getRaza())
+                .peso(mascotaDTO.getPeso())
+                .edad(mascotaDTO.getEdad())
+                .necesidades(mascotaDTO.getNecesidades())
                 .build();
     }
 
@@ -97,16 +104,23 @@ public class MascotaServiceImpl implements MascotaService {
         // Personalizando respuesta
         Integer IdMascota = mascotasExistentes.getIdMascota();
         Integer IdTipoUsuario = mascotasExistentes.getPropietarios().getUser().getTiposUsuario().getIdTipoUsuario();
+        Integer IdUsuario = mascotasExistentes.getPropietarios().getUser().getId();
         Integer IdPropietario = mascotasExistentes.getPropietarios().getIdPropietario();
         String nombrePropietario = mascotasExistentes.getPropietarios().getUser().getNombres();
         String nombreMascota = mascotasExistentes.getNombre();
 
         return MascotaDTO.builder()
                 .IdMascota(IdMascota)
+                .idTipoMascota(IdMascota)
                 .nombre(nombreMascota)
                 .IdTipoUsuario(IdTipoUsuario)
                 .idPropietario(IdPropietario)
+                .IdUsuario(IdUsuario)
                 .PropietarioNombres(nombrePropietario)
+                .raza(mascotaDTO.getRaza())
+                .peso(mascotaDTO.getPeso())
+                .edad(mascotaDTO.getEdad())
+                .necesidades(mascotaDTO.getNecesidades())
                 .build();
     }
 

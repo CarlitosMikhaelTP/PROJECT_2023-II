@@ -31,7 +31,7 @@ public class ReservaServiceImpl implements ReservaService {
     public ReservaDTO registrarReservas(ReservaDTO reservaDTO) {
         Paseadores paseadores = paseadorRepository.findById(reservaDTO.getIdPaseador())
                 .orElseThrow(()-> new PaseadorNotFoundException("Id del paseador no encontrado"));
-        Propietarios propietarios = propietarioRepository.findById(reservaDTO.getIdPaseador())
+        Propietarios propietarios = propietarioRepository.findById(reservaDTO.getIdPropietario())
                 .orElseThrow(()-> new PropietarioNotFoundException("Id del propietario no encontrado"));
 
         Reservas reservas = Reservas.builder()
@@ -47,16 +47,21 @@ public class ReservaServiceImpl implements ReservaService {
                 .build();
         // Guardando los cambios haciendo uso del repositorio
         reservas = reservaRepository.save(reservas);
-        Integer IdReserva = reservaDTO.getIdReserva();
-        Integer IdPropietario = reservaDTO.getIdPropietario();
-        Integer IdPaseador = reservaDTO.getIdPaseador();
-        BigDecimal Monto = reservaDTO.getMonto();
+        Integer IdReserva = reservas.getIdReserva();
+        Integer IdPropietario = reservas.getPropietarios().getIdPropietario();
+        Integer IdPaseador = reservas.getPaseadores().getIdPaseador();
+        BigDecimal Monto = reservas.getMonto();
 
         return ReservaDTO.builder()
                 .IdReserva(IdReserva)
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
                 .monto(Monto)
+                .fechaReserva(reservaDTO.getFechaReserva())
+                .duracionPaseo(reservaDTO.getDuracionPaseo())
+                .detalles(reservaDTO.getDetalles())
+                .puntoEncuentro(reservaDTO.getPuntoEncuentro())
+                .lugarPaseo(reservaDTO.getLugarPaseo())
                 .build();
     }
 
@@ -80,16 +85,21 @@ public class ReservaServiceImpl implements ReservaService {
         reservasExistentes = reservaRepository.save(reservasExistentes);
 
         // Personalizando respuesta
-        Integer IdReserva = reservaDTO.getIdReserva();
-        Integer IdPropietario = reservaDTO.getIdPropietario();
-        Integer IdPaseador = reservaDTO.getIdPaseador();
-        BigDecimal Monto = reservaDTO.getMonto();
+        Integer IdReserva = reservasExistentes.getIdReserva();
+        Integer IdPropietario = reservasExistentes.getPropietarios().getIdPropietario();
+        Integer IdPaseador = reservasExistentes.getPaseadores().getIdPaseador();
+        BigDecimal Monto = reservasExistentes.getMonto();
 
         return ReservaDTO.builder()
                 .IdReserva(IdReserva)
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
                 .monto(Monto)
+                .fechaReserva(reservaDTO.getFechaReserva())
+                .duracionPaseo(reservaDTO.getDuracionPaseo())
+                .detalles(reservaDTO.getDetalles())
+                .puntoEncuentro(reservaDTO.getPuntoEncuentro())
+                .lugarPaseo(reservaDTO.getLugarPaseo())
                 .build();
     }
 

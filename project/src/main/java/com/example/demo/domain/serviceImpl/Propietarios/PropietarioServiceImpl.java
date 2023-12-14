@@ -58,6 +58,12 @@ public class PropietarioServiceImpl implements PropietarioService {
                 .IdTipoUsuario(IdTipoUsuario)
                 .IdPropietario(IdPropietario)
                 .nombres(nombres)
+                .calificacion(propietarioDTO.getCalificacion())
+                .comentario(propietarioDTO.getComentario())
+                .preferenciasPaseo(propietarioDTO.getPreferenciasPaseo())
+                .saldo(propietarioDTO.getSaldo())
+                .disponibilidad(propietarioDTO.getDisponibilidad())
+                .ubicacion(propietarioDTO.getUbicacion())
                 .build();
     }
 
@@ -93,6 +99,12 @@ public class PropietarioServiceImpl implements PropietarioService {
                 .IdTipoUsuario(IdTipoUsuario)
                 .IdPropietario(IdPropietario)
                 .nombres(nombres)
+                .calificacion(propietarioDTO.getCalificacion())
+                .comentario(propietarioDTO.getComentario())
+                .preferenciasPaseo(propietarioDTO.getPreferenciasPaseo())
+                .saldo(propietarioDTO.getSaldo())
+                .disponibilidad(propietarioDTO.getDisponibilidad())
+                .ubicacion(propietarioDTO.getUbicacion())
                 .build();
     }
 

@@ -52,6 +52,10 @@ public class PaseoServiceImpl implements PaseoService {
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
                 .fechaPaseo(FechaPaseo)
+                .duracionReal(paseoDTO.getDuracionReal())
+                .lugar(paseoDTO.getLugar())
+                .comentario(paseoDTO.getComentario())
+                .calificacion(paseoDTO.getCalificacion())
                 .costo(costo)
                 .build();
     }
@@ -89,6 +93,10 @@ public class PaseoServiceImpl implements PaseoService {
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
                 .fechaPaseo(FechaPaseo)
+                .duracionReal(paseoDTO.getDuracionReal())
+                .lugar(paseoDTO.getLugar())
+                .comentario(paseoDTO.getComentario())
+                .calificacion(paseoDTO.getCalificacion())
                 .costo(costo)
                 .build();
     }

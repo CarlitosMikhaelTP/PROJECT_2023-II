@@ -26,7 +26,8 @@ public class PaseadorController {
 
     // Endpoint para registrar Paseadores
     @PostMapping("/register")
-    public ResponseEntity<PaseadoresDTO> registrarPaseador(@RequestBody PaseadoresDTO paseadoresDTO){
+    public ResponseEntity<PaseadoresDTO> registrarPaseador(
+            @RequestBody PaseadoresDTO paseadoresDTO){
         PaseadoresDTO paseadorRegistrado = paseadorService.registrarPaseador(paseadoresDTO);
         return ResponseEntity.ok(paseadorRegistrado);
     }

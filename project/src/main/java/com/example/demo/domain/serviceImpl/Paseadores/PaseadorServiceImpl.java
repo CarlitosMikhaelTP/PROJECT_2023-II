@@ -70,6 +70,14 @@ public class PaseadorServiceImpl implements PaseadorService {
                 .IdTipoUsuario(IdTipoUsuario)
                 .IdPaseador(IdPaseador)
                 .nombres(nombres)
+                .idCategoria(paseadoresDTO.getIdCategoria())
+                .calificacion(paseadoresDTO.getCalificacion())
+                .descripcion(paseadoresDTO.getDescripcion())
+                .experiencia(paseadoresDTO.getExperiencia())
+                .ubicacion(paseadoresDTO.getUbicacion())
+                .tarifa(paseadoresDTO.getTarifa())
+                .saldo(paseadoresDTO.getSaldo())
+                .disponibilidad(paseadoresDTO.getDisponibilidad())
                 .build();
     }
 
@@ -112,6 +120,14 @@ public class PaseadorServiceImpl implements PaseadorService {
                 .IdTipoUsuario(IdTipoUsuario)
                 .IdPaseador(IdPaseador)
                 .nombres(nombres)
+                .idCategoria(paseadoresDTO.getIdCategoria())
+                .calificacion(paseadoresDTO.getCalificacion())
+                .descripcion(paseadoresDTO.getDescripcion())
+                .experiencia(paseadoresDTO.getExperiencia())
+                .ubicacion(paseadoresDTO.getUbicacion())
+                .tarifa(paseadoresDTO.getTarifa())
+                .saldo(paseadoresDTO.getSaldo())
+                .disponibilidad(paseadoresDTO.getDisponibilidad())
                 .build();
     }
 

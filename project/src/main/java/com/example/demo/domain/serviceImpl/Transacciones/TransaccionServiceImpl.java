@@ -40,7 +40,7 @@ public class TransaccionServiceImpl implements TransaccionService {
     public TransaccionesDTO registrarTransacciones(TransaccionesDTO transaccionesDTO) {
         Paseadores paseadores = paseadorRepository.findById(transaccionesDTO.getIdPaseador())
                 .orElseThrow(()-> new PaseadorNotFoundException("Id del paseador no encontrado"));
-        Propietarios propietarios = propietarioRepository.findById(transaccionesDTO.getIdPaseador())
+        Propietarios propietarios = propietarioRepository.findById(transaccionesDTO.getIdPropietario())
                 .orElseThrow(()-> new PropietarioNotFoundException("Id del propietario no encontrado"));
         TiposTransaccion tiposTransaccion = tipoTransaccionRepository.findById(transaccionesDTO.getIdTipoTransaccion())
                 .orElseThrow(()-> new TipoTransaccionNotFoundException("Id del tipo de transacción no encontrado"));
@@ -66,6 +66,8 @@ public class TransaccionServiceImpl implements TransaccionService {
                 .IdTransaccion(IdTransaccion)
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
+                .IdTipoTransaccion(transaccionesDTO.getIdTipoTransaccion())
+                .IdEstadoTransaccion(transaccionesDTO.getIdEstadoTransaccion())
                 .monto(monto)
                 .build();
     }
@@ -77,7 +79,7 @@ public class TransaccionServiceImpl implements TransaccionService {
                 .orElseThrow(()-> new TransaccionNotFoundException("Id de la transacción no encontrada."));
         EstadosTransaccion estadosTransaccion = transaccionExistente.getEstadoTransaccion();
         if (transaccionesDTO.getIdEstadoTransaccion() != null){
-            estadosTransaccion = estadoTransaccionRepository.findById(transaccionesDTO.getIdTransaccion())
+            estadosTransaccion = estadoTransaccionRepository.findById(transaccionesDTO.getIdEstadoTransaccion())
                     .orElseThrow(()-> new EstadoTransaccionNotFoundException("Id del estado de transacción no ecnontrado"));
         }
         TiposTransaccion tiposTransaccion = transaccionExistente.getTiposTransaccion();
@@ -110,6 +112,8 @@ public class TransaccionServiceImpl implements TransaccionService {
                 .IdTransaccion(IdTransaccion)
                 .IdPropietario(IdPropietario)
                 .IdPaseador(IdPaseador)
+                .IdTipoTransaccion(transaccionesDTO.getIdTipoTransaccion())
+                .IdEstadoTransaccion(transaccionesDTO.getIdEstadoTransaccion())
                 .monto(monto)
                 .build();
     }

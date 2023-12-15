@@ -30,17 +30,17 @@ public class PaseadoresDTO {
     @NotBlank(message = "El id de la categoría no puede estar vacía")
     private Integer idCategoria;
 
-    @NotNull(message = "La calificacion no puede ser nula")
-    @NotBlank(message = "La calificacion no puede estar vacía")
+    //@NotNull(message = "La calificacion no puede ser nula")
+    //@NotBlank(message = "La calificacion no puede estar vacía")
     private Integer calificacion;
 
-    @NotNull(message = "La descripción no puede ser nula")
-    @NotBlank(message = "La descripción no puede estar vacía")
+    //@NotNull(message = "La descripción no puede ser nula")
+    //@NotBlank(message = "La descripción no puede estar vacía")
     @Size(max = 255, message = "La descripción debe tener entre 1 y 255 caracteres")
     private String descripcion;
 
-    @NotNull(message = "La experiencia no puede ser nula")
-    @NotBlank(message = "La experiencia no puede estar vacía")
+    //@NotNull(message = "La experiencia no puede ser nula")
+    //@NotBlank(message = "La experiencia no puede estar vacía")
     @Size(max = 255, message = "La experiencia debe tener entre 1 y 255 caracteres")
     private String experiencia;
 
@@ -54,8 +54,8 @@ public class PaseadoresDTO {
     @Digits(integer = 10, fraction = 2, message = "La tarifa debe tener un máximo de 10 dígitos enteros y 2 decimales")
     private BigDecimal tarifa;
 
-    @NotNull(message = "El saldo no puede ser nula")
-    @NotBlank(message = "La tarifa no puede estar vacía")
+    //@NotNull(message = "El saldo no puede ser nula")
+    //@NotBlank(message = "La tarifa no puede estar vacía")
     @Digits(integer = 10, fraction = 2, message = "El saldo debe tener un máximo de 10 dígitos enteros y 2 decimales")
     private BigDecimal saldo;
 

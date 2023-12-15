@@ -34,10 +34,10 @@ public class Paseadores {
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categorias categorias;
 
-    @Column(name = "calificacion", nullable = false)
+    @Column(name = "calificacion")
     private Integer calificacion;
 
-    @Column(name = "descripcion", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "descripcion", columnDefinition = "TEXT")
     private String descripcion;
 
     @Column(name = "experiencia", columnDefinition = "TEXT")

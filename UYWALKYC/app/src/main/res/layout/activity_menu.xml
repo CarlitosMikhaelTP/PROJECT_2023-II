@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8e8f9"
+    android:background="#FFF7D4"
     tools:context=".MenuActivity">
 
     <ScrollView
@@ -49,7 +49,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageView7"
-                    app:srcCompat="@drawable/profile" />
+                    app:srcCompat="@drawable/profile"
+                    />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -64,7 +65,7 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/txtNombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -98,20 +99,20 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imageView10"
+                            android:id="@+id/imageView12"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             app:srcCompat="@drawable/video_call" />
 
                         <TextView
-                            android:id="@+id/textView14"
+                            android:id="@+id/textView13"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:text="Video"
                             android:textAlignment="center"
-                            android:textColor="#7182ef"
+                            android:textColor="#EFB271"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -124,20 +125,18 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imageView9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             app:srcCompat="@drawable/notification" />
 
                         <TextView
-                            android:id="@+id/textView14"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Notificacion"
+                            android:text="Recibidos"
                             android:textAlignment="center"
-                            android:textColor="#7182ef"
+                            android:textColor="#EFB271"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -161,9 +160,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="VoiceCall"
+                            android:text="Llamadas"
                             android:textAlignment="center"
-                            android:textColor="#7182ef"
+                            android:textColor="#EFB271"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -245,6 +244,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/ProfileIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -257,28 +257,29 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_1" />
+                                app:srcCompat="@drawable/baseline_person_2_24"
+                                app:tint="@color/orangepalid"
+                                />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
+                            android:id="@+id/txtPerfil"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Inbox"
+                            android:text="Perfil"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -298,17 +299,18 @@
 
                             <ImageView
                                 android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_2" />
+                                app:srcCompat="@drawable/baseline_map_24"
+                                app:tint="@color/orangepalid" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -318,7 +320,7 @@
                             android:layout_marginTop="8dp"
                             android:text="Mapas"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -336,28 +338,27 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_3" />
+                                app:srcCompat="@drawable/baseline_chat_24"
+                                app:tint="@color/orangepalid" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Chats"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -375,28 +376,27 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_4" />
+                                app:srcCompat="@drawable/baseline_shower_24"
+                                app:tint="@color/orangepalid" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Reports"
+                            android:text="Baños"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -420,28 +420,27 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_5" />
+                                app:srcCompat="@drawable/baseline_calendar_month_24"
+                                app:tint="@color/orangepalid" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Calendar"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -459,28 +458,27 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_6" />
+                                app:srcCompat="@drawable/baseline_payment_24"
+                                app:tint="@color/orangepalid" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Tips"
+                            android:text="Pagos"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -498,33 +496,33 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_7" />
+                                app:srcCompat="@drawable/baseline_settings_suggest_24"
+                                app:tint="@color/orangepalid" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Settings"
+                            android:text="Config"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/logoutIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
@@ -538,28 +536,27 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_8" />
+                                app:srcCompat="@drawable/baseline_person_outline_24"
+                                app:tint="@color/orangepalid" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="More"
+                            android:text="Cerrar"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#6D582E"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>

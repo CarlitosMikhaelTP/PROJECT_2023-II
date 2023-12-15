@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
-    var urlbase = "http://192.168.18.8:8080/api/v1/auth/"
+    var urlbase = "http://10.200.134.227:8080/api/v1/auth/"
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
     private lateinit var btnSignIn: Button
@@ -62,6 +62,8 @@ class LoginActivity : AppCompatActivity() {
                         val result: LoginResponse? = response.body()
                         if (result != null && result.idTipoUsuario == 1){
                             val intent = Intent(this@LoginActivity,MenuActivity::class.java)
+                            intent.putExtra("nombre", result.nombres)
+                            intent.putExtra("apellido", result.apellidos)
                             startActivity(intent)
 
                             // Log the token and idTipoUsuario

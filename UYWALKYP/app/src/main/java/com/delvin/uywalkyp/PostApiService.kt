@@ -1,10 +1,10 @@
 package com.delvin.uywalkyp
 
 import com.delvin.uywalkyc.LoginSchema.LoginRequest
-import com.delvin.uywalkyc.LoginSchema.LoginResponse
-import com.delvin.uywalkyc.RegisterSchema.RegisterRequest
-import com.delvin.uywalkyc.RegisterSchema.RegisterResponse
 import com.delvin.uywalkyc.UsuariosSchema.PostModelResponse
+import com.delvin.uywalkyp.LoginSchema.LoginResponse
+import com.delvin.uywalkyp.RegisterSchema.RegisterRequest
+import com.delvin.uywalkyp.RegisterSchema.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

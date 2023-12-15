@@ -19,6 +19,7 @@ import Index_Dueno from './components/Index_Dueno';
 import Index_Paseador from './components/Index_Paseador';
 import BuscadorPaseadoresForm from './components/BuscadorPaseadores';
 
+
 function App() {
   return (
     //Usamos la etiqueta propia de React
@@ -36,6 +37,7 @@ function App() {
            <Route path='/registrationpage' element={<RegistrationPage />} />
            <Route path='/index_dueno' element={<Index_Dueno />} />
            <Route path='/index_paseador' element={<Index_Paseador />} />
+        
            <Route path='/buscador'></Route>
         </Routes>
       </Router>

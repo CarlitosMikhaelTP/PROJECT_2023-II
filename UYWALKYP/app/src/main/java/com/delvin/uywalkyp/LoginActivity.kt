@@ -1,6 +1,5 @@
 package com.delvin.uywalkyp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.delvin.uywalkyc.LoginSchema.LoginRequest
-import com.delvin.uywalkyc.LoginSchema.LoginResponse
+import com.delvin.uywalkyp.LoginSchema.LoginResponse
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -21,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
-    var urlbase = "http://192.168.18.8:8080/api/v1/auth/"
+    var urlbase = "http://10.200.134.227:8080/api/v1/auth/"
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
     private lateinit var btnSignIn: Button
@@ -62,6 +61,8 @@ class LoginActivity : AppCompatActivity() {
                         val result: LoginResponse? = response.body()
                         if (result != null && result.idTipoUsuario == 2){
                             val intent = Intent(this@LoginActivity,MenuActivity::class.java)
+                            intent.putExtra("nombre", result.nombres)
+                            intent.putExtra("apellido", result.apellidos)
                             startActivity(intent)
 
                             // Log the token and idTipoUsuario

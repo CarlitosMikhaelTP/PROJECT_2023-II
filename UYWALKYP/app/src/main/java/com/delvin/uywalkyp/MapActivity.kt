@@ -6,8 +6,11 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.location.Location
+import android.location.LocationRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
@@ -25,6 +28,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -48,7 +55,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-        getCurrentLocationUser()
+        startLocationUpdates()
     }
 
     private fun getCurrentLocationUser() {
@@ -76,8 +83,22 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
             }
         }
-
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = Runnable {
+            getCurrentLocationUser() // call this function again to update location
+        }
+        handler.postDelayed(runnable, 6000)
     }
+
+    private fun startLocationUpdates() {
+        CoroutineScope(Dispatchers.IO).launch {
+            while (true) {
+                getCurrentLocationUser()
+                delay(6000) // delay for 6 seconds before updating again
+            }
+        }
+    }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

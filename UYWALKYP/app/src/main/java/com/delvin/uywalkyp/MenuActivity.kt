@@ -15,6 +15,37 @@ class MenuActivity : AppCompatActivity() {
 
         OpenMap()
         OpenProfile()
+        showNameMenu()
+
+
+        val btnCerrarSesion = findViewById<LinearLayout>(R.id.logoutIcon)
+        btnCerrarSesion.setOnClickListener {
+            cerrarSesion()
+        }
+    }
+
+    private fun showNameMenu(){
+        val extras = intent.extras
+        if (extras != null) {
+            val nombre = extras.getString("nombre")?.capitalize()
+            val apellido = extras.getString("apellido")?.capitalize()
+
+            val nombreCompleto = "$nombre $apellido"
+
+            val txtName = findViewById<TextView>(R.id.txtNombre)
+            txtName.text = nombreCompleto
+        }
+    }
+    private fun cerrarSesion() {
+        val sharedPref = getSharedPreferences("login_info", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.clear()
+        editor.apply()
+
+        // Luego, redirigir a MainActivity
+        val intent = Intent(this@MenuActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Cierra MenuActivity para que no vuelva atrás
     }
 
     private fun OpenMap(){

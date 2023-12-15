@@ -1,4 +1,4 @@
-package com.delvin.uywalkyc.RegisterSchema
+package com.delvin.uywalkyp.RegisterSchema
 
 data class RegisterRequest(
     val apellidos: String,

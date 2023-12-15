@@ -17,6 +17,7 @@ public interface PaseadorRepository extends JpaRepository<Paseadores, Integer> {
     // Método para obtener todos los paseadores con la proyección
     List<PaseadorProjection> findBy();
 
+
     // Método para obtener un paseador por su ID
     Optional<PaseadorProjection> findPaseadoresByIdPaseador(Integer idPaseador);
 }

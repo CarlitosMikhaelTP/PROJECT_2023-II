@@ -1,6 +1,8 @@
 package com.example.demo.infrastructure.security.configuration.authentication;
 
 import com.example.demo.application.exceptions.UsuariosExceptions.NotFound.TipoUsuarioNotFoundException;
+import com.example.demo.domain.entity.paseadores.Paseadores;
+import com.example.demo.domain.entity.propietarios.Propietarios;
 import com.example.demo.domain.entity.usuarios.TiposUsuario;
 import com.example.demo.domain.entity.usuarios.User;
 import com.example.demo.domain.repository.Usuarios.TipoUsuarioRepository;
@@ -46,14 +48,27 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         Integer tipoUsuarioId = tiposUsuario.getIdTipoUsuario();
         Integer idUsuario = user.getId();
+        Integer idPaseador = null;
+        Paseadores paseador = user.getPaseadores();
+        if (paseador != null) {
+            idPaseador = paseador.getIdPaseador();
+        }
         String nombres = user.getNombres();
         String apellidos = user.getApellidos();
+        Integer idPropietario = null;
+        Propietarios propietario = user.getPropietarios();
+        if (propietario != null) {
+            idPropietario = propietario.getIdPropietario();
+        }
+
 
 
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .IdTipoUsuario(tipoUsuarioId)
+                .IdPaseador(idPaseador)
+                .IdPropietario(idPropietario)
                 .Id(idUsuario)
                 .nombres(nombres)
                 .apellidos(apellidos)
@@ -77,12 +92,25 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         TiposUsuario tiposUsuario = user.getTiposUsuario();
         Integer tipoUsuarioId = tiposUsuario.getIdTipoUsuario();
         Integer idUsuario = user.getId();
+        // Verificar si el usuario tiene perfil de paseador
+        Integer idPaseador = null;
+        Paseadores paseador = user.getPaseadores();
+        if (paseador != null) {
+            idPaseador = paseador.getIdPaseador();
+        }
         String nombres = user.getNombres();
         String apellidos = user.getApellidos();
+        Integer idPropietario = null;
+        Propietarios propietario = user.getPropietarios();
+        if (propietario != null) {
+            idPropietario = propietario.getIdPropietario();
+        }
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .IdTipoUsuario(tipoUsuarioId)
+                .IdPaseador(idPaseador)
+                .IdPropietario(idPropietario)
                 .Id(idUsuario)
                 .nombres(nombres)
                 .apellidos(apellidos)

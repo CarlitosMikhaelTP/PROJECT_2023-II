@@ -1,6 +1,7 @@
 package com.example.demo.domain.entity.usuarios;
 
 import com.example.demo.domain.entity.paseadores.Paseadores;
+import com.example.demo.domain.entity.propietarios.Propietarios;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -77,6 +78,9 @@ public class User implements UserDetails {
     /////////// MAPEANDO CARDINALIDAD ////////////////////////////
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Paseadores paseadores;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Propietarios propietarios;
 
     ///////// EXTENDIENDO CLASE USER DETAIL ////////////////////
     @Override

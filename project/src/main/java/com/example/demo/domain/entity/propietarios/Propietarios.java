@@ -33,19 +33,19 @@ public class Propietarios {
     @Column(name = "calificacion")
     private Integer calificacion;
 
-    @Column(name = "comentario", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "comentario", columnDefinition = "TEXT")
     private String comentario;
 
-    @Column(name = "preferencias_paseo", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "preferencias_paseo", columnDefinition = "TEXT")
     private String preferenciasPaseo;
 
-    @Column(name = "saldo", precision = 10, scale = 2, nullable = false)
+    @Column(name = "saldo", precision = 10, scale = 2)
     private BigDecimal saldo;
 
-    @Column(name = "disponibilidad", nullable = false)
+    @Column(name = "disponibilidad")
     private Boolean disponibilidad;
 
-    @Column(name = "ubicacion", length = 20, nullable = false)
+    @Column(name = "ubicacion", length = 20)
     private String ubicacion;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")

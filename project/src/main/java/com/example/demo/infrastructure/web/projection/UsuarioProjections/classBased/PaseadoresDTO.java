@@ -44,13 +44,13 @@ public class PaseadoresDTO {
     @Size(max = 255, message = "La experiencia debe tener entre 1 y 255 caracteres")
     private String experiencia;
 
-    @NotNull(message = "La ubicación no puede ser nula")
-    @NotBlank(message = "La ubicació no puede estar vacía")
+    //@NotNull(message = "La ubicación no puede ser nula")
+    //@NotBlank(message = "La ubicació no puede estar vacía")
     @Size(max = 20, message = "La ubicación debe tener entre 1 y 20 caracteres")
     private String ubicacion;
 
-    @NotNull(message = "La tarifa no puede ser nula")
-    @NotBlank(message = "La tarifa no puede estar vacía")
+    //@NotNull(message = "La tarifa no puede ser nula")
+    //@NotBlank(message = "La tarifa no puede estar vacía")
     @Digits(integer = 10, fraction = 2, message = "La tarifa debe tener un máximo de 10 dígitos enteros y 2 decimales")
     private BigDecimal tarifa;
 

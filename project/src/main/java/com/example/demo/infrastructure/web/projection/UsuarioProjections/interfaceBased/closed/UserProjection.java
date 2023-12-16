@@ -1,5 +1,8 @@
 package com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public interface UserProjection {
 
     // La convención de nomenclatura de Spring Data JPA sigue un patrón

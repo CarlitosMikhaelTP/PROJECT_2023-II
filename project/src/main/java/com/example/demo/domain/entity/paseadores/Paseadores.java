@@ -43,16 +43,16 @@ public class Paseadores {
     @Column(name = "experiencia", columnDefinition = "TEXT")
     private String experiencia;
 
-    @Column(name = "ubicacion", length = 20, nullable = false)
+    @Column(name = "ubicacion", length = 20)
     private String ubicacion;
 
-    @Column(name = "tarifa", precision = 10, scale = 2, nullable = false)
+    @Column(name = "tarifa", precision = 10, scale = 2)
     private BigDecimal tarifa;
 
-    @Column(name = "saldo", precision = 10, scale = 2, nullable = false)
+    @Column(name = "saldo", precision = 10, scale = 2)
     private BigDecimal saldo;
 
-    @Column(name = "disponibilidad", nullable = false)
+    @Column(name = "disponibilidad")
     private Boolean disponibilidad;
 
     @Column(name = "estado", columnDefinition = "TINYINT DEFAULT 1")

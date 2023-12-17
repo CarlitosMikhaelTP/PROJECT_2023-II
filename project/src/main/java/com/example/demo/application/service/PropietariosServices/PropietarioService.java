@@ -1,5 +1,6 @@
 package com.example.demo.application.service.PropietariosServices;
 
+import com.example.demo.domain.entity.propietarios.Propietarios;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBased.PropietarioDTO;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.PropietarioProjection;
 
@@ -15,11 +16,12 @@ public interface PropietarioService {
     PropietarioDTO editarPropietario(Integer id_propietario, PropietarioDTO propietarioDTO);
 
     // Definiendo interfaz para mostrar a los propietarios registrados
-    List<PropietarioProjection> findBy();
+
 
     // Definiendo Interfaz para mostrar a propietario por su ID
     Optional<PropietarioProjection> findPropietariosByIdPropietario(Integer idPropietario);
 
     //Definiendo Interfaz para eliminar un propietario por su ID
     boolean deletePropietarioById(Integer idPropietario);
+    List<PropietarioProjection> obtenerPropietariosDisponibles();
 }

@@ -4,6 +4,7 @@ import com.example.demo.domain.entity.propietarios.Propietarios;
 import com.example.demo.domain.entity.usuarios.User;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.PropietarioProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface PropietarioRepository extends JpaRepository<Propietarios, Integ
 
     // Método para obtener todos los paseadores con la proyección
     List<PropietarioProjection> findBy();
+
+    List<PropietarioProjection> findByDisponibilidadTrue();
 
     // Método para obtener un propietario por su ID
     Optional<PropietarioProjection> findPropietariosByIdPropietario(Integer idPropietario);

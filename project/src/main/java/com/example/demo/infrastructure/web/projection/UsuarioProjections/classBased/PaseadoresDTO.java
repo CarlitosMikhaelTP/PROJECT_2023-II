@@ -26,8 +26,8 @@ public class PaseadoresDTO {
     private Integer idUsuario;
 
     // Definiendo los campos para la edición del paseador y su edición
-    @NotNull(message = "El id de la categoría no puede ser nula")
-    @NotBlank(message = "El id de la categoría no puede estar vacía")
+    //@NotNull(message = "El id de la categoría no puede ser nula")
+    //@NotBlank(message = "El id de la categoría no puede estar vacía")
     private Integer idCategoria;
 
     //@NotNull(message = "La calificacion no puede ser nula")

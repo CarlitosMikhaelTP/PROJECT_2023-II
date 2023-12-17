@@ -37,8 +37,8 @@ public class PropietarioController {
 
     // Endpoint para listar a todos los propietarios usando proyecciones
     @GetMapping("/findAllPropietarios")
-    public List<PropietarioProjection> findAllPropietarios(){
-        return propietarioService.findBy(); // Obtiene todos los propietarios con la proyección
+    public List<PropietarioProjection> obtenerPropietariosDisponibles() {
+        return propietarioService.obtenerPropietariosDisponibles();
     }
 
     // Endpoint para listar un propietario por un ID

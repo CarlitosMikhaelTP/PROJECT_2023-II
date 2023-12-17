@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 public interface PropietarioProjection {
 
+    Integer getIdPropietario();
     @Value("#{target.User.nombres}")
     String getNombres();
     @Value("#{target.User.apellidos}")

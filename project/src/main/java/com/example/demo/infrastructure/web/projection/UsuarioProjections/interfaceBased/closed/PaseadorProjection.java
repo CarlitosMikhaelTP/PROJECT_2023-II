@@ -11,6 +11,8 @@ public interface PaseadorProjection {
     // Anotación para llamar directamente a la propiedad de
     // otro campo de la propiedad de categoría en este caso
     // del nombre
+
+    Integer getIdPaseador();
     @Value("#{target.User.nombres}")
     String getNombres();
 
@@ -18,6 +20,8 @@ public interface PaseadorProjection {
     String getApellidos();
     @Value("#{target.Categorias.categoriaNombre}")
     String getCategoriaNombre();
+
+    String getUbicacion();
     Integer getCalificacion();
     String getDescripcion();
     String getExperiencia();

@@ -80,12 +80,24 @@ public class PropietarioServiceImpl implements PropietarioService {
                     .orElseThrow(()-> new UserNotFoundException("Id de usuario no encontrado"));
         }
 
-        propietarioExistente.setCalificacion(propietarioDTO.getCalificacion());
-        propietarioExistente.setComentario(propietarioDTO.getComentario());
-        propietarioExistente.setPreferenciasPaseo(propietarioDTO.getPreferenciasPaseo());
-        propietarioExistente.setSaldo(propietarioDTO.getSaldo());
-        propietarioExistente.setDisponibilidad(propietarioDTO.getDisponibilidad());
-        propietarioExistente.setUbicacion(propietarioDTO.getUbicacion());
+        if (propietarioDTO.getCalificacion() != null) {
+            propietarioExistente.setCalificacion(propietarioDTO.getCalificacion());
+        }
+        if (propietarioDTO.getComentario() != null) {
+            propietarioExistente.setComentario(propietarioDTO.getComentario());
+        }
+        if (propietarioDTO.getPreferenciasPaseo() != null) {
+            propietarioExistente.setPreferenciasPaseo(propietarioDTO.getPreferenciasPaseo());
+        }
+        if (propietarioDTO.getSaldo() != null) {
+            propietarioExistente.setSaldo(propietarioDTO.getSaldo());
+        }
+        if (propietarioDTO.getDisponibilidad() != null) {
+            propietarioExistente.setDisponibilidad(propietarioDTO.getDisponibilidad());
+        }
+        if (propietarioDTO.getUbicacion() != null) {
+            propietarioExistente.setUbicacion(propietarioDTO.getUbicacion());
+        }
 
         propietarioExistente = propietarioRepository.save(propietarioExistente);
         // Personalizando respuesta
@@ -99,19 +111,16 @@ public class PropietarioServiceImpl implements PropietarioService {
                 .IdTipoUsuario(IdTipoUsuario)
                 .IdPropietario(IdPropietario)
                 .nombres(nombres)
-                .calificacion(propietarioDTO.getCalificacion())
-                .comentario(propietarioDTO.getComentario())
-                .preferenciasPaseo(propietarioDTO.getPreferenciasPaseo())
-                .saldo(propietarioDTO.getSaldo())
-                .disponibilidad(propietarioDTO.getDisponibilidad())
-                .ubicacion(propietarioDTO.getUbicacion())
+                .calificacion(propietarioExistente.getCalificacion()) // Usar el valor actualizado del propietarioExistente
+                .comentario(propietarioExistente.getComentario())
+                .preferenciasPaseo(propietarioExistente.getPreferenciasPaseo())
+                .saldo(propietarioExistente.getSaldo())
+                .disponibilidad(propietarioExistente.getDisponibilidad())
+                .ubicacion(propietarioExistente.getUbicacion())// Usar el valor actualizado del propietarioExistente
+                // Agregar los demás campos actualizados de manera similar
                 .build();
     }
 
-    @Override
-    public List<PropietarioProjection> findBy() {
-        return propietarioRepository.findBy();
-    }
 
     @Override
     public Optional<PropietarioProjection> findPropietariosByIdPropietario(Integer idPropietario) {
@@ -125,5 +134,10 @@ public class PropietarioServiceImpl implements PropietarioService {
         propietarioRepository.delete(propietarios);
         System.out.println("Se eliminó el propietario con el Id: " + idPropietario);
         return true;
+    }
+
+    @Override
+    public List<PropietarioProjection> obtenerPropietariosDisponibles() {
+        return propietarioRepository.findByDisponibilidadTrue();
     }
 }

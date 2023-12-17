@@ -47,7 +47,8 @@ const UserProfile = () => {
       const response = await axios.put(`http://localhost:8080/api/v1/user/editUser/${userId}`, editedData);
       console.log('Datos actualizados:', response.data);
       handleCloseModal();
-      // Actualizar userData o recargar datos del usuario después de editar
+      // Recargar la página después de una actualización exitosa
+      window.location.reload();
     } catch (error) {
       console.error('Error al actualizar datos:', error);
     }

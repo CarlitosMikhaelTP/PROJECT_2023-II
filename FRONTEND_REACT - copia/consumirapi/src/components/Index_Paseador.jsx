@@ -1,15 +1,10 @@
-//Anotacion jsx para crear los componentes
-//Llamamos a la librería de React
 import React from "react";
-//Anotacion jsx para crear los componentes
-//servicios
-import {Apiurl} from '../services/apirest'; 
-//Importando Axios
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import L from 'leaflet'; // Importando Leaflet para el mapa
+import 'leaflet/dist/leaflet.css';
 
-//Crear una clase que herede de React Component
 class Index_Paseador extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +22,7 @@ class Index_Paseador extends React.Component {
       },
       formData: {
         idUsuario: localStorage.getItem('id') || '',
-        idCategoria: '', 
+        idCategoria: '',
         calificacion: '',
         descripcion: '',
         experiencia: '',
@@ -36,8 +31,38 @@ class Index_Paseador extends React.Component {
         saldo: 0,
         disponibilidad: false,
       },
+      showModal: false,
+      initialRegistration: true, // Agrega el estado para el registro inicial
+      mapInitialized: false, // Agrega un estado para verificar si el mapa se ha inicializado
     };
+    this.map = null;
   }
+
+
+    // Funcionalidades del mapa
+    initMap = () => {
+      if (!this.state.mapInitialized) {
+        // Lógica para inicializar el mapa
+        this.map = L.map('mapid').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+  
+        this.setState({ mapInitialized: true }); // Actualiza el estado del mapa
+      }
+    };
+
+
+    componentDidMount() {
+      const userId = localStorage.getItem('id');
+    
+      if (userId) {
+        this.setState(prevState => ({
+          formData: {
+            ...prevState.formData,
+            idUsuario: userId,
+          },
+        }));
+      }
+    }
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -73,23 +98,73 @@ class Index_Paseador extends React.Component {
   };
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { formData } = this.state;
+    const { formData, initialRegistration } = this.state;
   
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/paseador/register', formData);
-      console.log('Registro exitoso:', response.data);
-      // Redirigir a la página principal ('/')
-      // Si estás utilizando React Router, puedes redirigir usando history.push('/')
-      // Por ejemplo: this.props.history.push('/');
+      if (initialRegistration) {
+        // Realiza la petición de registro
+        const response = await axios.post('http://localhost:8080/api/v1/paseador/register', formData);
+        console.log('Registro exitoso:', response.data);
+  
+        // Actualiza el estado local con los datos ingresados
+        this.setState({
+          initialRegistration: false,
+          formData: { ...formData }, // Actualiza con los datos del formulario
+          showModal: true,
+        });
+      } else {
+        // Si es una actualización...
+        const userId = localStorage.getItem('id');
+        const response = await axios.put(`http://localhost:8080/api/v1/paseador/edit/${userId}`, formData);
+        console.log('Actualización exitosa:', response.data);
+        this.setState({ showModal: true });
+      }
     } catch (error) {
-      console.error('Error al registrar el paseador:', error);
+      console.error('Error al procesar la solicitud:', error);
     }
+  };
+
+  handleUpdate = async () => {
+    try {
+      const userId = localStorage.getItem('id');
+      const response = await axios.put(`http://localhost:8080/api/v1/paseador/edit/${userId}`, this.state.formData);
+      console.log('Actualización exitosa:', response.data);
+      this.setState({ showModal: true });
+    } catch (error) {
+      console.error('Error al procesar la solicitud:', error);
+    }
+  };
+
+  
+
+  handleCloseModal = () => {
+    // Ocultar el modal al cerrarlo
+    this.setState({ showModal: false });
   };
   
 
+
+
+  handleActivateLocation = () => {
+    if (this.state.mapInitialized) {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const { latitude, longitude } = position.coords;
+          this.map.setView([latitude, longitude], 15); // Centra el mapa en la ubicación actual
+          L.marker([latitude, longitude]).addTo(this.map); // Agrega un marcador en la ubicación actual
+        });
+      } else {
+        alert('La geolocalización no está disponible en este navegador.');
+      }
+    } else {
+      alert('El mapa aún no se ha inicializado. Espere un momento o actualice la página.');
+    }
+  };
+
+
     //creamos metodo render que retornara los elementos html
     render(){
-      const { categorias, selectedCategoria, formData } = this.state;
+      const { categorias, selectedCategoria, formData, showModal } = this.state;
         return(
             <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
@@ -121,10 +196,47 @@ class Index_Paseador extends React.Component {
   </div>
 </nav>
 {/* Agregar formulario para registrar un paseador */}
-<div className="container mt-4">
-          <h2>Registrar Paseador</h2>
+<div className="container-fluid mt-4 col-md-2 offset-md-1">
+          <h2>Menú de Paseador</h2>
           <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="disponibilidad">Disponibilidad</label>
+            <div className="custom-control custom-switch ">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="disponibilidad"
+                name="disponibilidad"
+                checked={formData.disponibilidad}
+                onChange={() =>
+                  this.setState((prevState) => ({
+                    formData: {
+                      ...prevState.formData,
+                      disponibilidad: !prevState.formData.disponibilidad,
+                    },
+                  }))
+                }
+          />
+                <label className="custom-control-label" htmlFor="disponibilidad">
+                  {formData.disponibilidad ? 'Activado' : 'Desactivado'}
+                </label>
+              </div>
+            </div>
             {/* Input para la calificación, descripción, etc. */}
+            <div className="form-group">
+              <label htmlFor="ubicacion">Ubicación</label>
+              <input
+                type="text"
+                className="form-control"
+                id="ubicacion"
+                name="ubicacion"
+                required="Agrega tu ubicación actual"
+                value={formData.ubicacion}
+                onChange={this.handleInputChange}
+              />
+            </div>
+
+            
             {/* Ejemplo de campo para la categoría */}
             <div className="form-group">
               <label htmlFor="categoria">Categoría</label>
@@ -153,6 +265,7 @@ class Index_Paseador extends React.Component {
                 className="form-control"
                 id="calificacion"
                 name="calificacion"
+                required="Aqui verás global"
                 value={formData.calificacion}
                 onChange={this.handleInputChange}
               />
@@ -165,6 +278,7 @@ class Index_Paseador extends React.Component {
                 className="form-control"
                 id="descripcion"
                 name="descripcion"
+                required="Añade una descripción para que las personas te conozcan"
                 value={formData.descripcion}
                 onChange={this.handleInputChange}
               />
@@ -177,6 +291,7 @@ class Index_Paseador extends React.Component {
                 className="form-control"
                 id="experiencia"
                 name="experiencia"
+                required="Escribe tu experiencia como paseador de perros"
                 value={formData.experiencia}
                 onChange={this.handleInputChange}
               />
@@ -189,6 +304,8 @@ class Index_Paseador extends React.Component {
                 className="form-control"
                 id="tarifa"
                 name="tarifa"
+                readOnly
+                required="Aquí podrás ver el precio de tu servicio"
                 value={formData.tarifa}
                 onChange={this.handleInputChange}
               />
@@ -201,41 +318,51 @@ class Index_Paseador extends React.Component {
                 className="form-control"
                 id="saldo"
                 name="saldo"
+                required="Aquí verás tu saldo"
+                readOnly
                 value={formData.saldo}
                 onChange={this.handleInputChange}
               />
             </div>
-
-            <div className="form-group">
-              <label htmlFor="ubicacion">Ubicación</label>
-              <input
-                type="text"
-                className="form-control"
-                id="ubicacion"
-                name="ubicacion"
-                value={formData.ubicacion}
-                onChange={this.handleInputChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="ubicacion">Disponibilidad</label>
-              <input
-                type="text"
-                className="form-control"
-                id="disponibilidad"
-                name="disponibilidad"
-                value={formData.disponibilidad}
-                onChange={this.handleInputChange}
-              />
-            </div>
-
             {/* ... (otros campos del formulario) ... */}
 
             <button type="submit" className="btn btn-primary">
-              Registrarse como paseador
+              Enviar
             </button>
+
+            {/* Botón para actualizar */}
+        <button type="button" className="btn btn-success ml-2" onClick={this.handleUpdate}>
+          Actualizar
+        </button>
+
+        {/* Mapa */}
+<div ref={this.mapRef} style={{ height: "300px" }}></div>
+
+{/* Botón para activar la localización */}
+<button type="button" className="btn btn-primary" onClick={this.handleActivateLocation}>
+  Activar Localización
+</button>
           </form>
+        </div>
+        <div className="modal" style={{ display: showModal ? 'block' : 'none' }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">¡Registro exitoso!</h5>
+                <button type="button" className="close" onClick={this.handleCloseModal}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Te has registrado como paseador con éxito.
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-primary" onClick={this.handleCloseModal}>
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 </React.Fragment>
     );

@@ -99,14 +99,28 @@ public class PaseadorServiceImpl implements PaseadorService {
                     .orElseThrow(() -> new CategoriaNotFoundException("Id de la categoría no encontrado"));
         }
 
-        paseadorExistente.setCalificacion(paseadoresDTO.getCalificacion());
-        paseadorExistente.setDescripcion(paseadoresDTO.getDescripcion());
-        paseadorExistente.setExperiencia(paseadoresDTO.getExperiencia());
-        paseadorExistente.setUbicacion(paseadoresDTO.getUbicacion());
-        paseadorExistente.setTarifa(paseadoresDTO.getTarifa());
-        paseadorExistente.setSaldo(paseadoresDTO.getSaldo());
-        paseadorExistente.setDisponibilidad(paseadoresDTO.getDisponibilidad());
-        paseadorExistente.setCategorias(categorias);
+        // Verifica cada campo antes de actualizar
+        if (paseadoresDTO.getCalificacion() != null) {
+            paseadorExistente.setCalificacion(paseadoresDTO.getCalificacion());
+        }
+        if (paseadoresDTO.getDescripcion() != null) {
+            paseadorExistente.setDescripcion(paseadoresDTO.getDescripcion());
+        }
+        if (paseadoresDTO.getExperiencia() != null) {
+            paseadorExistente.setExperiencia(paseadoresDTO.getExperiencia());
+        }
+        if (paseadoresDTO.getUbicacion() != null) {
+            paseadorExistente.setUbicacion(paseadoresDTO.getUbicacion());
+        }
+        if (paseadoresDTO.getTarifa() != null) {
+            paseadorExistente.setTarifa(paseadoresDTO.getTarifa());
+        }
+        if (paseadoresDTO.getSaldo() != null) {
+            paseadorExistente.setSaldo(paseadoresDTO.getSaldo());
+        }
+        if (paseadoresDTO.getDisponibilidad() != null) {
+            paseadorExistente.setDisponibilidad(paseadoresDTO.getDisponibilidad());
+        }
 
         paseadorExistente = paseadorRepository.save(paseadorExistente);
         // Personalizando respuesta
@@ -115,19 +129,20 @@ public class PaseadorServiceImpl implements PaseadorService {
         Integer IdPaseador = paseadorExistente.getIdPaseador();
         String nombres = paseadorExistente.getUser().getNombres();
 
+        // Devuelve la respuesta con los campos actualizados
         return PaseadoresDTO.builder()
-                .idUsuario(IdUsuario)
-                .IdTipoUsuario(IdTipoUsuario)
-                .IdPaseador(IdPaseador)
-                .nombres(nombres)
+                .idUsuario(paseadorExistente.getUser().getId())
+                .IdTipoUsuario(paseadorExistente.getUser().getTiposUsuario().getIdTipoUsuario())
+                .IdPaseador(paseadorExistente.getIdPaseador())
+                .nombres(paseadorExistente.getUser().getNombres())
                 .idCategoria(paseadoresDTO.getIdCategoria())
-                .calificacion(paseadoresDTO.getCalificacion())
-                .descripcion(paseadoresDTO.getDescripcion())
-                .experiencia(paseadoresDTO.getExperiencia())
-                .ubicacion(paseadoresDTO.getUbicacion())
-                .tarifa(paseadoresDTO.getTarifa())
-                .saldo(paseadoresDTO.getSaldo())
-                .disponibilidad(paseadoresDTO.getDisponibilidad())
+                .calificacion(paseadorExistente.getCalificacion())
+                .descripcion(paseadorExistente.getDescripcion())
+                .experiencia(paseadorExistente.getExperiencia())
+                .ubicacion(paseadorExistente.getUbicacion())
+                .tarifa(paseadorExistente.getTarifa())
+                .saldo(paseadorExistente.getSaldo())
+                .disponibilidad(paseadorExistente.getDisponibilidad())
                 .build();
     }
 

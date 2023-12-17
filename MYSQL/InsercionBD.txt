@@ -17,6 +17,84 @@ VALUES
     (1, 'Laura', 'Martínez', 'lau', 'Boulevard Principal 321', 35, '789456123', '43218765', 'laura@example.com', 'passwordabc');
 select * from usuarios;
 select * from paseadores;
+delete from paseadores;
+
+-------- PASOS PARA CAMBIAR A CAMPOS NULOS ---------------
+drop table paseadores;
+
+
+describe paseadores;
+ALTER TABLE Paseadores
+MODIFY calificacion INT NOT NULL,
+MODIFY descripcion TEXT NOT NULL,
+MODIFY experiencia TEXT NOT NULL;
+DELETE FROM PASEADORES;
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE PASEADORES;
+CREATE TABLE Paseadores (
+    id_paseador INT AUTO_INCREMENT PRIMARY KEY, --
+    id_usuario INT NOT NULL, --
+    id_categoria INT NOT NULL, --
+    calificacion INT, --
+    descripcion TEXT, --
+    experiencia TEXT, 
+    ubicacion VARCHAR(20), --
+    tarifa DECIMAL(8, 2), --
+    saldo DECIMAL(8, 2),
+    disponibilidad BOOLEAN,
+    estado TINYINT UNSIGNED DEFAULT 1, --
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, --
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, --
+    created_by INT, --
+    updated_by INT, --
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id) ON DELETE CASCADE, 
+    FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES Usuarios(id),
+    FOREIGN KEY (updated_by) REFERENCES Usuarios(id)
+);
+
+-------- PROPIETARIOS --------------
+DROP TABLE PROPIETARIOS;
+CREATE TABLE Propietarios (
+    id_propietario INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    calificacion INT,
+    comentario TEXT,
+    preferencias_paseo TEXT,
+    saldo DECIMAL(8, 2),
+    disponibilidad BOOLEAN,
+    ubicacion VARCHAR(20),
+    estado TINYINT DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_by INT,
+    updated_by INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES Usuarios(id),
+    FOREIGN KEY (updated_by) REFERENCES Usuarios(id) 
+);
+COMMIT;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+select * from reservas;
+select * from categorias;
+select * from paseos;
+select * from transacciones;
+select * from calificacionescomentarios;
+describe calificacionescomentarios;
+select * from propietarios;
+select * from locacion_propietario;
+select * from tipos_transaccion;
+select * from estados_transaccion;
+select * from transacciones;
+describe transacciones;
+select *from mascotas;
+select * from locacion_paseador;
+describe propietarios;
+describe paseadores;
+select * from paseadores;
 select * from Tipos_usuario;
 ALTER TABLE Propietarios
 DROP COLUMN foto;
@@ -175,4 +253,6 @@ describe locacion_propietario;
 describe paseos;
 ALTER TABLE Paseos
 MODIFY costo DECIMAL(10, 2) NOT NULL;
+
+select * from usuarios;
 

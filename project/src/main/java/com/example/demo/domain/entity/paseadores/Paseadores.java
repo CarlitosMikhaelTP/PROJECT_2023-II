@@ -37,6 +37,9 @@ public class Paseadores {
     @Column(name = "calificacion")
     private Integer calificacion;
 
+    @Column(name = "foto")
+    private String foto;
+
     @Column(name = "descripcion", columnDefinition = "TEXT")
     private String descripcion;
 

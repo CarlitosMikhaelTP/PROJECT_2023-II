@@ -33,6 +33,9 @@ public class Propietarios {
     @Column(name = "calificacion")
     private Integer calificacion;
 
+    @Column(name = "foto")
+    private String foto;
+
     @Column(name = "comentario", columnDefinition = "TEXT")
     private String comentario;
 

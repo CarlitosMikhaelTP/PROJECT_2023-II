@@ -1,18 +1,22 @@
 package com.example.demo.domain.serviceImpl.Propietarios;
 
+import com.example.demo.application.exceptions.PaseadoresExceptions.NotFound.PaseadorNotFoundException;
 import com.example.demo.application.exceptions.PropietariosExceptions.Exist.PropietarioExistenteException;
 import com.example.demo.application.exceptions.PropietariosExceptions.NotFound.PropietarioNotFoundException;
 import com.example.demo.application.exceptions.UsuariosExceptions.NotFound.UserNotFoundException;
 import com.example.demo.application.service.PropietariosServices.PropietarioService;
+import com.example.demo.domain.entity.paseadores.Paseadores;
 import com.example.demo.domain.entity.propietarios.Propietarios;
 import com.example.demo.domain.entity.usuarios.User;
 import com.example.demo.domain.repository.Propietarios.PropietarioRepository;
 import com.example.demo.domain.repository.Usuarios.UserRepository;
 
+import com.example.demo.infrastructure.web.controller.FOTO.controllers.services.UploadFilesService;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBased.PropietarioDTO;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.PropietarioProjection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +27,7 @@ public class PropietarioServiceImpl implements PropietarioService {
 
     private final UserRepository userRepository;
     private final PropietarioRepository propietarioRepository;
-
+    private final UploadFilesService uploadFilesService;
 
     // Servicio para registrar Propietarios
     @Override
@@ -139,5 +143,22 @@ public class PropietarioServiceImpl implements PropietarioService {
     @Override
     public List<PropietarioProjection> obtenerPropietariosDisponibles() {
         return propietarioRepository.findByDisponibilidadTrue();
+    }
+
+    @Override
+    public void actualizarFotoPropietario(Integer idPropietario, MultipartFile foto) throws Exception {
+        Propietarios propietario = propietarioRepository.findById(idPropietario)
+                .orElseThrow(() -> new PropietarioNotFoundException("Propietario no encontrado"));
+
+        try {
+            String rutaFoto = "directorio/propietarios/" + idPropietario + "/foto"; // Ruta donde se guardará la foto
+            String respuesta = uploadFilesService.handleFileUpload(foto, rutaFoto);
+
+            // Actualizar el campo de la foto en la entidad Paseador
+            propietario.setFoto(respuesta); // Guardar la ruta o identificador de la foto en la entidad
+            propietarioRepository.save(propietario);
+        } catch (Exception e) {
+            throw new Exception("Error al actualizar la foto del propietario: " + e.getMessage());
+        }
     }
 }

@@ -30,6 +30,8 @@ public class PaseadoresDTO {
     //@NotBlank(message = "El id de la categoría no puede estar vacía")
     private Integer idCategoria;
 
+    private String foto;
+
     //@NotNull(message = "La calificacion no puede ser nula")
     //@NotBlank(message = "La calificacion no puede estar vacía")
     private Integer calificacion;

@@ -12,11 +12,13 @@ import com.example.demo.domain.repository.Paseadores.CategoriaRepository;
 import com.example.demo.domain.repository.Paseadores.PaseadorRepository;
 import com.example.demo.domain.repository.Usuarios.UserRepository;
 
+import com.example.demo.infrastructure.web.controller.FOTO.controllers.services.UploadFilesService;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBased.PaseadoresDTO;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.PaseadorProjection;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +31,8 @@ public class PaseadorServiceImpl implements PaseadorService {
     private final UserRepository userRepository;
     private final PaseadorRepository paseadorRepository;
     private final CategoriaRepository categoriaRepository;
+    private final UploadFilesService uploadFilesService;
+
 
     // Servicio para registrar Paseadores
     @Override
@@ -40,6 +44,7 @@ public class PaseadorServiceImpl implements PaseadorService {
         if (paseadorRepository.existsByUser(user)) {
             throw new PaseadorExistenteException("Este paseador ya tiene una cuenta como paseador");
         }
+
 
         Categorias categorias = categoriaRepository.findById(paseadoresDTO.getIdCategoria())
                 .orElseThrow(() -> new CategoriaNotFoundException("Id de la categoría no encontrado"));
@@ -79,6 +84,23 @@ public class PaseadorServiceImpl implements PaseadorService {
                 .saldo(paseadoresDTO.getSaldo())
                 .disponibilidad(paseadoresDTO.getDisponibilidad())
                 .build();
+    }
+
+    @Override
+    public void actualizarFotoPaseador(Integer idPaseador, MultipartFile foto) throws Exception {
+        Paseadores paseador = paseadorRepository.findById(idPaseador)
+                .orElseThrow(() -> new PaseadorNotFoundException("Paseador no encontrado"));
+
+        try {
+            String rutaFoto = "directorio/paseadores/" + idPaseador + "/foto"; // Ruta donde se guardará la foto
+            String respuesta = uploadFilesService.handleFileUpload(foto, rutaFoto);
+
+            // Actualizar el campo de la foto en la entidad Paseador
+            paseador.setFoto(respuesta); // Guardar la ruta o identificador de la foto en la entidad
+            paseadorRepository.save(paseador);
+        } catch (Exception e) {
+            throw new Exception("Error al actualizar la foto del paseador: " + e.getMessage());
+        }
     }
 
 
@@ -170,7 +192,6 @@ public class PaseadorServiceImpl implements PaseadorService {
         return true;
 
     }
-
 
 }
 

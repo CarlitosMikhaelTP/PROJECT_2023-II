@@ -5,6 +5,7 @@ import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBa
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBased.PaseadoresDTO;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.MascotaProjection;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.PaseadorProjection;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,8 @@ public interface MascotaService {
 
     // DEFINIENDO INTERFAZ para realizar el registro de Mascotas
     MascotaDTO registrarMascota(MascotaDTO mascotaDTO);
+
+    void actualizarFotoMascota(Integer mascotaId, MultipartFile foto) throws Exception;
 
     // DEFINIENDO INTERFAZ para realizar la edición de Mascotas
     MascotaDTO editarMascota(Integer id_mascota, MascotaDTO mascotaDTO);

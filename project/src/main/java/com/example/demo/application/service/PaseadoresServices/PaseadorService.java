@@ -1,8 +1,8 @@
 package com.example.demo.application.service.PaseadoresServices;
 
-
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBased.PaseadoresDTO;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.PaseadorProjection;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +11,8 @@ public interface PaseadorService {
 
     // DEFINIENDO INTERFAZ para realizar el registro de Paseadores
     PaseadoresDTO registrarPaseador(PaseadoresDTO paseadoresDTO);
+
+    void actualizarFotoPaseador(Integer paseadorId, MultipartFile foto) throws Exception;
 
     // DEFINIENDO INTERFAZ para realizar la edición de Paseadores
     PaseadoresDTO editarPaseador(Integer id_paseador, PaseadoresDTO paseadoresDTO);
@@ -23,5 +25,6 @@ public interface PaseadorService {
 
     // DEFINIENDO INTERFAZ para eliminar un paseador por su ID
     boolean deletePaseadorById(Integer idPaseador);
+
 }
 

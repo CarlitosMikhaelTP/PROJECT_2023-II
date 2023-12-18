@@ -7,19 +7,38 @@ import java.math.BigDecimal;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public interface PaseadorProjection {
-
     // Anotación para llamar directamente a la propiedad de
     // otro campo de la propiedad de categoría en este caso
     // del nombre
 
+    @Value("#{target.User.id}")
+    Integer getId();
     Integer getIdPaseador();
+
     @Value("#{target.User.nombres}")
     String getNombres();
+
+    @Value("#{target.User.dni}")
+    String getDni();
+
+    @Value("#{target.User.email}")
+    String getEmail();
 
     @Value("#{target.User.apellidos}")
     String getApellidos();
     @Value("#{target.Categorias.categoriaNombre}")
     String getCategoriaNombre();
+
+    @Value("#{target.LocacionPaseador != null ? target.LocacionPaseador.latitud : null}")
+    BigDecimal getLatitud();
+
+    @Value("#{target.LocacionPaseador != null ? target.LocacionPaseador.longitud : null}")
+    BigDecimal getLongitud();
+
+    @Value("#{target.user.celular}")
+    String getCelular();
+
+    String getFoto();
 
     String getUbicacion();
     Integer getCalificacion();

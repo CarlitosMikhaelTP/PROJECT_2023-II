@@ -8,12 +8,17 @@ import java.math.BigDecimal;
 
 public interface PropietarioProjection {
 
+    @Value("#{target.User.id}")
+    Integer getId();
+
     Integer getIdPropietario();
     @Value("#{target.User.nombres}")
     String getNombres();
     @Value("#{target.User.apellidos}")
     String getApellidos();
     Integer getCalificacion();
+
+    String getFoto();
     String getComentario();
     String getPreferenciasPaseo();
     BigDecimal getSaldo();

@@ -41,6 +41,8 @@ public class PropietarioDTO {
     @Digits(integer = 10, fraction = 2, message = "La tarifa debe tener un máximo de 10 dígitos enteros y 2 decimales")
     private BigDecimal saldo;
 
+    private String foto;
+
     //@NotNull(message = "La disponibilidad no puede ser nula")
     //@NotBlank(message = "La disponibilidad no puede estar vacía")
     private Boolean disponibilidad;

@@ -16,11 +16,13 @@ import com.example.demo.domain.entity.propietarios.Propietarios;
 import com.example.demo.domain.entity.usuarios.User;
 import com.example.demo.domain.repository.Mascotas.MascotasRepository;
 import com.example.demo.domain.repository.Propietarios.PropietarioRepository;
+import com.example.demo.infrastructure.web.controller.FOTO.controllers.services.UploadFilesService;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBased.MascotaDTO;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.classBased.PaseadoresDTO;
 import com.example.demo.infrastructure.web.projection.UsuarioProjections.interfaceBased.closed.MascotaProjection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +34,7 @@ public class MascotaServiceImpl implements MascotaService {
     private final PropietarioRepository propietarioRepository;
     private final MascotasRepository mascotasRepository;
     private final TiposMascotaRepository tiposMascotaRepository;
+    private final UploadFilesService uploadFilesService;
 
 
     // Servicio para registrar Mascotas
@@ -75,6 +78,23 @@ public class MascotaServiceImpl implements MascotaService {
                 .edad(mascotaDTO.getEdad())
                 .necesidades(mascotaDTO.getNecesidades())
                 .build();
+    }
+
+    @Override
+    public void actualizarFotoMascota(Integer idMascota, MultipartFile foto) throws Exception {
+        Mascotas mascota = mascotasRepository.findById(idMascota)
+                .orElseThrow(() -> new PaseadorNotFoundException("Mascota no encontrada"));
+
+        try {
+            String rutaFoto = "directorio/mascotas/" + idMascota + "/foto"; // Ruta donde se guardará la foto
+            String respuesta = uploadFilesService.handleFileUpload(foto, rutaFoto);
+
+            // Actualizar el campo de la foto en la entidad Paseador
+            mascota.setFoto(respuesta); // Guardar la ruta o identificador de la foto en la entidad
+            mascotasRepository.save(mascota);
+        } catch (Exception e) {
+            throw new Exception("Error al actualizar la foto de la mascota: " + e.getMessage());
+        }
     }
 
     // Servicio para editar Mascotas

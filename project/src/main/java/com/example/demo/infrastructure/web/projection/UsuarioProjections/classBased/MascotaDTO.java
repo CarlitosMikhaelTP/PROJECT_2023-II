@@ -24,6 +24,8 @@ public class MascotaDTO {
     @NotBlank(message = "El id del propietario no puede estar vacío")
     private Integer idPropietario;
 
+    private String foto;
+
     @NotNull(message = "El nombre de la mascota no puede ser nula")
     @NotBlank(message = "La descripción de la mascota no puede estar vacía")
     @Size(max = 20, message = "La descripción de la mascota debe tener entre 1 y 20 caracteres")

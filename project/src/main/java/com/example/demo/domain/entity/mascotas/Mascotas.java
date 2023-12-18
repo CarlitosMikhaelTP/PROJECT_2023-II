@@ -35,6 +35,9 @@ public class Mascotas {
     @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
 
+    @Column(name="foto")
+    private String foto;
+
     @Column(name = "raza", nullable = false, length = 20)
     private String raza;
 

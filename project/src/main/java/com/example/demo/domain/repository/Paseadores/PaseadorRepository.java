@@ -15,7 +15,7 @@ public interface PaseadorRepository extends JpaRepository<Paseadores, Integer> {
     boolean existsByUser(User user);
 
     // Método para obtener todos los paseadores con la proyección
-    List<PaseadorProjection> findBy();
+    List<PaseadorProjection> findByDisponibilidadTrue();
 
 
     // Método para obtener un paseador por su ID

@@ -149,7 +149,7 @@ public class PaseadorServiceImpl implements PaseadorService {
     // Servicio para mostrar a los paseadores registrados
     @Override
     public List<PaseadorProjection> findBy() {
-        return paseadorRepository.findBy();
+        return paseadorRepository.findByDisponibilidadTrue();
     }
 
 

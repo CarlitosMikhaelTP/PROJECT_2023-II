@@ -62,11 +62,17 @@ class LoginActivity : AppCompatActivity() {
                         val result: LoginResponse? = response.body()
                         if (result != null && result.idTipoUsuario == 1){
                             val intent = Intent(this@LoginActivity,MenuActivity::class.java)
+                            intent.putExtra("idUsuario", result.id)
+                            intent.putExtra("nombre", result.nombres)
+                            intent.putExtra("apellido", result.apellidos)
+                            intent.putExtra("idPropietario", result.idPropietario)
                             startActivity(intent)
 
                             // Log the token and idTipoUsuario
+                            Log.d("idPropietario",result.idPropietario.toString())
                             Log.d("Token", result.token)
                             Log.d("idTipoUsuario", result.idTipoUsuario.toString())
+                            Log.d("ID USUARIO", result.id.toString())
                         }else{
                             Toast.makeText(this@LoginActivity,"Usuario incorrecto",Toast.LENGTH_SHORT).show()
                         }

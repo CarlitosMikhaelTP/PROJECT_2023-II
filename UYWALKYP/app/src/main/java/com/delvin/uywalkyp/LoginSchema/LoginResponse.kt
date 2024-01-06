@@ -1,6 +1,10 @@
-package com.delvin.uywalkyc.LoginSchema
+package com.delvin.uywalkyp.LoginSchema
 
 data class LoginResponse(
+    val apellidos: String,
+    val id: Int,
     val idTipoUsuario: Int,
-    val token: String
+    val nombres: String,
+    val token: String,
+    val idPaseador:Int
 )

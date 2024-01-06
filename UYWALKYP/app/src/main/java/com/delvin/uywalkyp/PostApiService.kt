@@ -1,14 +1,19 @@
 package com.delvin.uywalkyp
 
 import com.delvin.uywalkyc.LoginSchema.LoginRequest
-import com.delvin.uywalkyc.LoginSchema.LoginResponse
-import com.delvin.uywalkyc.RegisterSchema.RegisterRequest
-import com.delvin.uywalkyc.RegisterSchema.RegisterResponse
 import com.delvin.uywalkyc.UsuariosSchema.PostModelResponse
+import com.delvin.uywalkyp.LocacionSchema.LocacionRequest
+import com.delvin.uywalkyp.LocacionSchema.LocacionResponse
+import com.delvin.uywalkyp.LoginSchema.LoginResponse
+import com.delvin.uywalkyp.PaseadorSchema.PaseadorRequest
+import com.delvin.uywalkyp.PaseadorSchema.PaseadorResponse
+import com.delvin.uywalkyp.RegisterSchema.RegisterRequest
+import com.delvin.uywalkyp.RegisterSchema.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 
@@ -30,5 +35,12 @@ interface PostApiService {
     @POST("register")
     suspend fun createUser(@Body registerRequest: RegisterRequest): Response<RegisterResponse>
 
+    @POST("register")
+    suspend fun createPaseador(@Body paseadorRequest: PaseadorRequest):Response<PaseadorResponse>
 
+    @POST("register")
+    suspend fun createLocacion(@Body locacionRequest: LocacionRequest):Response<LocacionResponse>
+
+    @PUT("LocacionPaseador/edit/{idLocacionPaseador}")
+    suspend fun updateLocacion(@Path("idLocacionPaseador") idLocacionPaseador:Int,@Body locacionRequest:LocacionRequest): Response<LocacionResponse>
 }

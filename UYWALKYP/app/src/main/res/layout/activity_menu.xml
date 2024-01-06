@@ -43,13 +43,14 @@
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageView7"
-                    app:srcCompat="@drawable/profile" />
+                    app:layout_constraintVertical_bias="0.432"
+                    app:srcCompat="@drawable/uywalkerlogo" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -98,14 +99,14 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imageView10"
+                            android:id="@+id/imageView12"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             app:srcCompat="@drawable/video_call" />
 
                         <TextView
-                            android:id="@+id/textView14"
+                            android:id="@+id/textView13"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
@@ -124,18 +125,16 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imageView9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             app:srcCompat="@drawable/notification" />
 
                         <TextView
-                            android:id="@+id/textView14"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Notificacion"
+                            android:text="Recibidos"
                             android:textAlignment="center"
                             android:textColor="#7182ef"
                             android:textStyle="bold" />
@@ -161,7 +160,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="VoiceCall"
+                            android:text="Llamadas"
                             android:textAlignment="center"
                             android:textColor="#7182ef"
                             android:textStyle="bold" />
@@ -183,7 +182,6 @@
                 android:hint="Buscar ..."
                 android:inputType="textPersonName"
                 android:paddingStart="8dp"
-                android:text="Name"
                 android:textColor="#8D8D8D"
                 android:textSize="16sp"
                 android:textStyle="bold|italic" />
@@ -259,8 +257,6 @@
                             android:background="@drawable/white_top_buttons">
 
                             <ImageView
-                                android:id="@+id/imageView11"
-
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:layout_marginStart="10dp"
@@ -353,11 +349,10 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/baseline_chat_24"
-                                android:tint="@color/mblue"/>
+                                app:tint="@color/mblue" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -396,7 +391,6 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -437,11 +431,10 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/baseline_calendar_month_24"
-                                android:tint="@color/mblue"/>
+                                app:tint="@color/mblue" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -480,7 +473,6 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -519,7 +511,6 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -531,6 +522,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/logoutIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
@@ -555,15 +547,14 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/baseline_person_outline_24"
-                                android:tint="@color/mblue"/>
+                                app:tint="@color/mblue" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Cerrar S"
+                            android:text="Cerrar"
                             android:textAlignment="center"
                             android:textColor="#2e3d6d"
                             android:textSize="14sp"

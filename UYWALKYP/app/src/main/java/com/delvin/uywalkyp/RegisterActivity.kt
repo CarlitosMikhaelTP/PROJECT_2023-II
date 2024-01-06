@@ -10,8 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.delvin.uywalkyc.RegisterSchema.RegisterRequest
-import com.delvin.uywalkyc.RegisterSchema.RegisterResponse
+import com.delvin.uywalkyp.RegisterSchema.RegisterRequest
+import com.delvin.uywalkyp.RegisterSchema.RegisterResponse
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
 
     var urlbase = "http://192.168.18.8:8080/api/v1/auth/"
     private lateinit var txtName: EditText
+    private lateinit var txtLastname: EditText
     private lateinit var txtDNI: EditText
     private lateinit var txtPhone: EditText
     private lateinit var txtEmail:EditText
@@ -28,11 +29,13 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var txtPassword:EditText
     private lateinit var txtRePassword: EditText
     private lateinit var btnSignup:Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         txtName=findViewById(R.id.input_name)
+        txtLastname=findViewById(R.id.input_lastname)
         txtDNI=findViewById(R.id.input_dni)
         txtPhone=findViewById(R.id.input_phone)
         txtEmail=findViewById(R.id.input_email)
@@ -55,7 +58,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
     fun SignUp(view: View) {
-        val apellidos = ""
+        val apellidos = txtLastname.text.toString()
         val apodo = ""
         val celular = txtPhone.text.toString()
         val direccion = ""
@@ -81,6 +84,8 @@ class RegisterActivity : AppCompatActivity() {
                         val result: RegisterResponse? = response.body()
                         if (result?.token != null) { // Check if token is not null
                             Log.d("Token", result.token)
+                            Log.d("Nombre", result.nombres.toString())
+                            Log.d("Apellido", result.apellidos.toString())
                             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                             startActivity(intent)
                         } else {

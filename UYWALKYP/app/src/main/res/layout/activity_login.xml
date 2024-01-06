@@ -157,7 +157,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Facebook"
-                    android:textColor="@color/green"
+                    android:textColor="@color/mblue"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -189,7 +189,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Google"
-                    android:textColor="@color/green"
+                    android:textColor="@color/mblue"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>

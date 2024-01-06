@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
 
     var urlbase = "http://192.168.18.8:8080/api/v1/auth/"
     private lateinit var txtName: EditText
+    private lateinit var txtLastname: EditText
     private lateinit var txtDNI: EditText
     private lateinit var txtPhone: EditText
     private lateinit var txtEmail:EditText
@@ -33,6 +34,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         txtName=findViewById(R.id.input_name)
+        txtLastname=findViewById(R.id.input_lastname)
         txtDNI=findViewById(R.id.input_dni)
         txtPhone=findViewById(R.id.input_phone)
         txtEmail=findViewById(R.id.input_email)
@@ -55,7 +57,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
     fun SignUp(view: View) {
-        val apellidos = ""
+        val apellidos = txtLastname.text.toString()
         val apodo = ""
         val celular = txtPhone.text.toString()
         val direccion = ""

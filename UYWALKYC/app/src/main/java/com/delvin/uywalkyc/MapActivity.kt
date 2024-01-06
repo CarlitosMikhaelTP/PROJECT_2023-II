@@ -10,10 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.delvin.uywalkyc.LocacionPaseadorSchema.LocacionPaseadorResponseItem
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -26,17 +30,28 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+    private var userLocationMarker: Marker? = null
 
     private var mMap:GoogleMap?=null
+    var urlbase = "http://192.168.18.8:8080/api/v1/LocacionPaseador/"
 
     private lateinit var currentLocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val permissionCode=101
 
     private var markerIcon: BitmapDescriptor?=null
+    private var markerIcon2: BitmapDescriptor?=null
     private var markerWalker: Marker? = null
+    private lateinit var btnMostrarPaseadores:Button
+    private lateinit var btnOcultarPaseadores:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +61,64 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationProviderClient=LocationServices.getFusedLocationProviderClient(this)
 
         markerIcon = getMarkerFromDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.basset)!!)
-
+        markerIcon2 = getMarkerFromDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.iconwalker)!!)
+        btnMostrarPaseadores=findViewById(R.id.btnMostrarPaseadores)
+        btnOcultarPaseadores=findViewById(R.id.btnOcultarPaseadores)
 
 
         getCurrentLocationUser()
     }
+    var retrofit=Retrofit.Builder()
+        .baseUrl(urlbase)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val service=retrofit.create(PostApiService::class.java)
+
+    fun MostrarPaseadores(view: View) {
+        lifecycleScope.launch {
+            try {
+                val response: Response<List<LocacionPaseadorResponseItem>> = service.getDataLocation()
+
+                if (response.isSuccessful) {
+                    val locacionPaseadores = response.body()
+
+                    locacionPaseadores?.forEach {
+                        val paseadorLocation = LatLng(it.latitud, it.longitud)
+                        val markerOptions = MarkerOptions()
+                            .position(paseadorLocation)
+                            .title(it.nombres)
+                            .icon(markerIcon2)
+
+                        mMap?.addMarker(markerOptions)
+                    }
+
+                    toggleButtonsVisibility(false)
+                } else {
+                    // Manejar el caso de una respuesta no exitosa
+                    Log.e("MostrarPaseadores", "Error al obtener datos de ubicación de paseadores. Código: ${response.code()}")
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Error al obtener datos de ubicación de paseadores. Código: ${response.code()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (e: Exception) {
+                // Manejar excepciones aquí
+                Log.e("MostrarPaseadores", "Error al obtener datos de ubicación de paseadores", e)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Error al obtener datos de ubicación de paseadores",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
 
     private fun getCurrentLocationUser() {
         if(ActivityCompat.checkSelfPermission(
@@ -103,6 +171,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap?.isBuildingsEnabled=false*/
     }
 
+    fun OcultarPaseadores(view: View) {
+        mMap?.clear()
+        markerWalker = null
+        btnMostrarPaseadores.visibility = View.VISIBLE
+        btnOcultarPaseadores.visibility = View.GONE
+    }
+
+    private fun toggleButtonsVisibility(showMostrar: Boolean) {
+        btnMostrarPaseadores.visibility = if (showMostrar) View.VISIBLE else View.GONE
+        btnOcultarPaseadores.visibility = if (!showMostrar) View.VISIBLE else View.GONE
+    }
+
     private fun createMarker(){
         val coordinates=LatLng(currentLocation.latitude,currentLocation.longitude)
         val marker=MarkerOptions().position(coordinates).title("Ubicacion actual")
@@ -147,12 +227,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun getMarkerFromDrawable(drawable: Drawable): BitmapDescriptor {
         val canvas = Canvas()
         val bitmap = Bitmap.createBitmap(
-            70,
-            70,
+            150,
+            150,
             Bitmap.Config.ARGB_8888
         )
         canvas.setBitmap(bitmap)
-        drawable.setBounds(0,0,70,70)
+        drawable.setBounds(0,0,150,150)
         drawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
